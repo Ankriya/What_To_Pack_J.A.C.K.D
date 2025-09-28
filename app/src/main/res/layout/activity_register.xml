@@ -76,7 +76,8 @@
         android:textColor="@color/black"
         android:textSize="32sp"
         app:layout_constraintTop_toBottomOf="@id/txtBoxEmail"
-        tools:layout_editor_absoluteX="75dp" />
+        tools:layout_editor_absoluteX="75dp"
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/txtBoxPassword"
