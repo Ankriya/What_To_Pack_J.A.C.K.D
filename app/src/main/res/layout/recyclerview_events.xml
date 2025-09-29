@@ -28,6 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
+            android:fontFamily="@font/tantangkiwood_display"
             android:text="EVENT NAME:" />
 
         <TextView
@@ -35,6 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
+            android:fontFamily="@font/tantangkiwood_display"
             android:text="LOCATION:" />
 
         <TextView
@@ -42,6 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
+            android:fontFamily="@font/tantangkiwood_display"
             android:text="THEME:" />
 
         <TextView
@@ -49,6 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
+            android:fontFamily="@font/tantangkiwood_display"
             android:text="COST:" />
 
 
@@ -58,6 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textColor="@color/black"
+            android:fontFamily="@font/tantangkiwood_display"
             android:backgroundTint="@color/white"
             android:text="RSVP" />
 

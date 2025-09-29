@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="HardcodedText">
+
+    <item
+        android:id="@+id/my_search"
+        android:fontFamily="@font/tantangkiwood_display"
+        android:title="MY SEARCH" />
+
+    <item
+        android:id="@+id/my_suitcase"
+        android:fontFamily="@font/tantangkiwood_display"
+        android:title="MY SUITCASE" />
+
+    <item
+        android:id="@+id/my_profile"
+        android:fontFamily="@font/tantangkiwood_display"
+        android:title="MY PROFILE" />
+
+</menu>

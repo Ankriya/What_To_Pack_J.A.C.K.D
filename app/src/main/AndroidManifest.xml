@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PROG7312_POE_JACKD">
         <activity
+            android:name=".UserProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MyListActivity"
+            android:exported="false" />
+        <activity
             android:name=".TripDetailsActivity"
             android:exported="false" />
         <activity
