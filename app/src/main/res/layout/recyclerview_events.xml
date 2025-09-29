@@ -15,7 +15,7 @@
         app:cardCornerRadius="16dp"
         app:cardElevation="6dp"
         app:layout_constraintTop_toBottomOf="@id/LoginTitle"
-        app:cardBackgroundColor="@color/pastelGreen">
+        app:cardBackgroundColor="#99a1f7da">
 
         <LinearLayout
             android:layout_width="match_parent"
