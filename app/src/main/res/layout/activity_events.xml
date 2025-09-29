@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/beige"
+    tools:context=".EventsActivity">
+
+    <ImageView
+        android:id="@+id/bg"
+        android:layout_width="517dp"
+        android:layout_height="1255dp"
+        app:srcCompat="@drawable/blue_bg"
+        tools:layout_editor_absoluteX="-17dp"
+        tools:layout_editor_absoluteY="-232dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/LoginTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/tantangkiwood_display"
+        android:text="EVENTS"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="55sp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="75dp" />
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/LoginTitle"
+        android:background="@android:color/transparent"
+        android:elevation="0dp">
+
+        <com.google.android.material.search.SearchBar
+            android:id="@+id/search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Search events..."
+            android:padding="8dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:backgroundTint="@android:color/white"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="4dp"
+            app:strokeWidth="0dp"
+            app:strokeColor="@android:color/transparent"
+            app:hintTextColor="@color/black"
+            app:navigationIconTint="@color/black"
+            app:menuIconTint="@color/black"
+            app:cardBackgroundColor="@color/white"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:layout_editor_absoluteY="210dp"
+        tools:layout_editor_absoluteX="56dp"
+        tools:ignore="MissingConstraints">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

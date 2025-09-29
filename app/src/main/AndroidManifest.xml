@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PROG7312_POE_JACKD">
         <activity
+            android:name=".EventsActivity"
+            android:exported="false" />
+        <activity
             android:name=".CurrencyActivity"
             android:exported="false" />
         <activity
