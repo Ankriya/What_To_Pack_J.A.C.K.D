@@ -10,129 +10,133 @@
 
     <TextView
         android:id="@+id/mySearch"
-        android:layout_width="350dp"
-        android:layout_height="82dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/tantangkiwood_display"
         android:text="MY SEARCH"
         android:textColor="@color/black"
         android:textSize="75sp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="46dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/grass"
-        android:layout_width="433dp"
-        android:layout_height="824dp"
-        android:layout_marginTop="4dp"
+        android:id="@+id/calendar_icon"
+        android:layout_width="142dp"
+        android:layout_height="135dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="52dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mySearch"
-        app:srcCompat="@drawable/redcar_restaurant_money"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-11dp" />
-
-    <ImageView
-        android:id="@+id/clouds"
-        android:layout_width="228dp"
-        android:layout_height="154dp"
-        app:layout_constraintTop_toBottomOf="@+id/mySearch"
-        app:srcCompat="@drawable/clouds"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="186dp" />
-
-    <ImageView
-        android:id="@+id/calendar"
-        android:layout_width="179dp"
-        android:layout_height="171dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toLeftOf="@+id/clouds"
-        app:srcCompat="@drawable/calendar"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="186dp" />
-
-    <Button
-        android:id="@+id/WeatherBtn"
-        android:layout_width="144dp"
-        android:layout_height="66dp"
-        android:layout_marginTop="80dp"
-        android:fontFamily="@font/tantangkiwood_display"
-        android:minWidth="0dp"
-        android:minHeight="0dp"
-        android:padding="0dp"
-        android:text="WEATHER"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        app:backgroundTint="@color/transparent"
-        app:layout_constraintTop_toTopOf="@+id/clouds"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="211dp" />
+        app:srcCompat="@drawable/calendar" />
 
     <Button
         android:id="@+id/EventsBtn"
-        android:layout_width="155dp"
-        android:layout_height="101dp"
-        android:layout_marginTop="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/tantangkiwood_display"
         android:minWidth="0dp"
         android:minHeight="0dp"
         android:padding="0dp"
         android:text="EVENTS"
         android:textColor="@color/black"
-        android:textSize="30sp"
-        app:backgroundTint="@color/transparent"
-        app:layout_constraintTop_toTopOf="@+id/calendar"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp" />
+        android:textSize="20sp"
+        app:backgroundTint="@android:color/transparent"
+        app:layout_constraintTop_toTopOf="@+id/calendar_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/calendar_icon"
+        app:layout_constraintStart_toStartOf="@+id/calendar_icon"
+        app:layout_constraintEnd_toEndOf="@+id/calendar_icon"
+        app:layout_constraintVertical_bias="0.25" />
+
+    <ImageView
+        android:id="@+id/clouds_icon"
+        android:layout_width="181dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mySearch"
+        app:srcCompat="@drawable/clouds" />
+
+    <Button
+        android:id="@+id/WeatherBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/tantangkiwood_display"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:padding="0dp"
+        android:text="WEATHER"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:backgroundTint="@android:color/transparent"
+        app:layout_constraintTop_toTopOf="@+id/clouds_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/clouds_icon"
+        app:layout_constraintStart_toStartOf="@+id/clouds_icon"
+        app:layout_constraintEnd_toEndOf="@+id/clouds_icon"
+        app:layout_constraintVertical_bias="0.65" />
+
+    <ImageView
+        android:id="@+id/bottom_background_elements"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/redcar_restaurant_money"
+        app:layout_constraintTop_toBottomOf="@+id/calendar_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <Button
         android:id="@+id/RestaurantBtn"
-        android:layout_width="196dp"
-        android:layout_height="136dp"
-        android:layout_marginTop="280dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/tantangkiwood_display"
         android:minWidth="0dp"
         android:minHeight="0dp"
         android:padding="0dp"
         android:text="RESTAURANTS"
         android:textColor="@color/black"
-        android:textSize="30sp"
-        app:backgroundTint="@color/transparent"
-        app:layout_constraintTop_toTopOf="@+id/grass"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="199dp" />
+        android:textSize="20sp"
+        app:backgroundTint="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="@+id/bottom_background_elements"
+        app:layout_constraintEnd_toEndOf="@+id/bottom_background_elements"
+        app:layout_constraintHorizontal_bias="0.776"
+        app:layout_constraintStart_toStartOf="@+id/bottom_background_elements"
+        app:layout_constraintTop_toTopOf="@+id/bottom_background_elements"
+        app:layout_constraintVertical_bias="0.328" />
 
-    <Button
-        android:id="@+id/CurrencyBtn"
-        android:layout_width="144dp"
-        android:layout_height="66dp"
-        android:layout_marginTop="552dp"
-        android:fontFamily="@font/tantangkiwood_display"
-        android:minWidth="0dp"
-        android:minHeight="0dp"
-        android:padding="0dp"
-        android:text="CURRENCY"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        app:backgroundTint="@color/transparent"
-        app:layout_constraintTop_toTopOf="@+id/grass"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="270dp" />
-
-    <Button
+    <TextView
         android:id="@+id/TransportBtn"
-        android:layout_width="140dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="500dp"
+        android:layout_width="195dp"
+        android:layout_height="84dp"
         android:fontFamily="@font/tantangkiwood_display"
-        android:minWidth="0dp"
-        android:minHeight="0dp"
-        android:padding="0dp"
         android:text="TRANSPORT"
         android:textColor="@color/black"
-        android:textSize="30sp"
-        app:backgroundTint="@color/transparent"
-        app:layout_constraintTop_toTopOf="@+id/grass"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-1dp" />
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/bottom_background_elements"
+        app:layout_constraintEnd_toEndOf="@+id/bottom_background_elements"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/bottom_background_elements"
+        app:layout_constraintTop_toTopOf="@+id/bottom_background_elements"
+        app:layout_constraintVertical_bias="0.951" />
+
+    <TextView
+        android:id="@+id/CurrencyBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/tantangkiwood_display"
+        android:text="CURRENCY"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/bottom_background_elements"
+        app:layout_constraintEnd_toEndOf="@+id/bottom_background_elements"
+        app:layout_constraintHorizontal_bias="0.866"
+        app:layout_constraintStart_toStartOf="@+id/bottom_background_elements"
+        app:layout_constraintTop_toTopOf="@+id/bottom_background_elements"
+        app:layout_constraintVertical_bias="0.921" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

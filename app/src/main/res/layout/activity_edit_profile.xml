@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/beige"
-    tools:context=".TripDetailsActivity">
+    tools:context=".EditProfileActivity">
 
     <ImageView
         android:id="@+id/background"
@@ -21,192 +19,176 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/TRIPDETAILS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:id="@+id/UserTitle"
+        android:layout_width="408dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="4dp"
         android:fontFamily="@font/tantangkiwood_display"
-        android:text="TRIP DETAILS"
+        android:gravity="center"
+        android:text="USER PROFILE"
         android:textColor="@color/black"
         android:textSize="60sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/Icon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="4dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/UserTitle"
+        tools:srcCompat="@tools:sample/avatars" />
+
     <androidx.cardview.widget.CardView
-        android:id="@+id/trip_details_card"
+        android:id="@+id/userProfile_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="15dp"
         app:cardBackgroundColor="#99a1f7da"
         app:cardCornerRadius="16dp"
         app:cardElevation="6dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/TRIPDETAILS">
+        app:layout_constraintTop_toBottomOf="@id/Icon">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp">
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/vertical_divider"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.5" />
+            android:layout_height="match_parent"
+            android:padding="24dp">
 
             <TextView
-                android:id="@+id/From"
+                android:id="@+id/FullName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/tantangkiwood_display"
-                android:text="FROM:"
+                android:text="FULL NAME:"
                 android:textColor="@color/black"
-                android:textSize="35sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/FromInput"
+                android:id="@+id/FullNameInput"
                 android:layout_width="0dp"
-                android:layout_height="45dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/rounded_edittext_bg"
-                android:fontFamily="@font/tantangkiwood_display"
-                android:hint="ENTER LOCATION"
-                android:inputType="textPersonName"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                android:textColor="@android:color/black"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toStartOf="@id/vertical_divider"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/From" />
-
-            <TextView
-                android:id="@+id/To"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/tantangkiwood_display"
-                android:text="TO:"
-                android:textColor="@color/black"
-                android:textSize="35sp"
-                app:layout_constraintStart_toStartOf="@id/vertical_divider"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
-                android:id="@+id/ToInput"
-                android:layout_width="0dp"
-                android:layout_height="45dp"
                 android:layout_marginTop="4dp"
-                android:layout_marginStart="8dp"
                 android:background="@drawable/rounded_edittext_bg"
                 android:fontFamily="@font/tantangkiwood_display"
-                android:hint="DESTINATION"
+                android:hint="ENTER FULL NAME"
                 android:inputType="textPersonName"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
+                android:padding="10dp"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/vertical_divider"
-                app:layout_constraintTop_toBottomOf="@id/To" />
-
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/FullName" />
 
             <TextView
-                android:id="@+id/TimeLabel"
+                android:id="@+id/Email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/tantangkiwood_display"
-                android:text="TIME:"
+                android:text="EMAIL:"
                 android:textColor="@color/black"
-                android:textSize="35sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ToInput" />
+                app:layout_constraintTop_toBottomOf="@id/FullNameInput" />
 
             <EditText
-                android:id="@+id/TimeInput"
-                android:layout_width="157dp"
-                android:layout_height="45dp"
+                android:id="@+id/EmailInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:background="@drawable/rounded_edittext_bg"
                 android:fontFamily="@font/tantangkiwood_display"
-                android:hint="ENTER TIME"
+                android:hint="ENTER EMAIL"
+                android:inputType="textEmailAddress"
+                android:padding="10dp"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/Email" />
+
+            <TextView
+                android:id="@+id/Number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/tantangkiwood_display"
+                android:text="NUMBER:"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/EmailInput" />
+
+            <EditText
+                android:id="@+id/NumberInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/rounded_edittext_bg"
+                android:fontFamily="@font/tantangkiwood_display"
+                android:hint="ENTER PHONE NUMBER"
+                android:inputType="phone"
+                android:padding="10dp"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/Number" />
+
+            <TextView
+                android:id="@+id/Gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/tantangkiwood_display"
+                android:text="GENDER:"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/NumberInput" />
+
+            <EditText
+                android:id="@+id/GenderInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/rounded_edittext_bg"
+                android:fontFamily="@font/tantangkiwood_display"
+                android:hint="ENTER GENDER"
                 android:inputType="text"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
+                android:padding="10dp"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/TimeLabel" />
-
-            <TextView
-                android:id="@+id/LocationLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:fontFamily="@font/tantangkiwood_display"
-                android:text="LOCATION (AIRPORT):"
-                android:textColor="@color/black"
-                android:textSize="35sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TimeInput" />
-
-            <EditText
-                android:id="@+id/AirportInput"
-                android:layout_width="200dp"
-                android:layout_height="45dp"
-                android:layout_marginTop="4dp"
-                android:background="@drawable/rounded_edittext_bg"
-                android:fontFamily="@font/tantangkiwood_display"
-                android:hint="ENTER AIRPORT"
-                android:inputType="textPersonName"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                android:textColor="@android:color/black"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/LocationLabel" />
+                app:layout_constraintTop_toBottomOf="@id/Gender" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:id="@+id/SubmitBtn"
-        android:layout_width="150dp"
+        android:id="@+id/SaveBtn"
+        android:layout_width="117dp"
         android:layout_height="56dp"
-        android:layout_marginTop="32dp"
-        android:backgroundTint="@color/pastelPurple"
-        android:fontFamily="@font/tantangkiwood_display"
-        android:text="SUBMIT"
-        android:textColor="@android:color/black"
-        android:textSize="30sp"
-        app:layout_constraintTop_toBottomOf="@id/trip_details_card"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/ViewTripsBtn"
-        android:layout_width="190dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="@color/pastelGreen"
         android:fontFamily="@font/tantangkiwood_display"
-        android:text="VIEW TRIPS"
+        android:text="SAVE"
         android:textColor="@android:color/black"
         android:textSize="30sp"
-        app:layout_constraintTop_toBottomOf="@id/SubmitBtn"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/userProfile_card" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

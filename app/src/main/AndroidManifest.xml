@@ -12,6 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PROG7312_POE_JACKD">
         <activity
+            android:name=".EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CreateListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ViewTripsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MySuitcaseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RestaurantActivity"
+            android:exported="false" />
+        <activity
             android:name=".UserProfileActivity"
             android:exported="false" />
         <activity

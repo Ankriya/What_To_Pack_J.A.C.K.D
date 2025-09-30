@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/beige"
+    tools:context=".MySuitcaseActivity">
+
+    <TextView
+        android:id="@+id/MySuitcase"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/tantangkiwood_display"
+        android:gravity="center"
+        android:text="MY SUITCASE"
+        android:textColor="@color/black"
+        android:textSize="55sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/TripDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:srcCompat="@drawable/suitcase"
+        app:layout_constraintTop_toBottomOf="@+id/MySuitcase"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/TripDetailsBtn"
+        android:layout_width="142dp"
+        android:layout_height="91dp"
+        android:fontFamily="@font/tantangkiwood_display"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:padding="0dp"
+        android:rotation="12"
+        android:text="TRIP DETAILS"
+        android:textColor="@color/black"
+        android:textSize="40sp"
+        app:backgroundTint="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="@+id/TripDetails"
+        app:layout_constraintEnd_toEndOf="@+id/TripDetails"
+        app:layout_constraintHorizontal_bias="0.385"
+        app:layout_constraintStart_toStartOf="@+id/TripDetails"
+        app:layout_constraintTop_toTopOf="@+id/TripDetails"
+        app:layout_constraintVertical_bias="0.567" />
+
+    <ImageView
+        android:id="@+id/MyList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:srcCompat="@drawable/suitcase2"
+        app:layout_constraintTop_toBottomOf="@+id/TripDetails"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/MyListBtn"
+        android:layout_width="117dp"
+        android:layout_height="111dp"
+        android:fontFamily="@font/tantangkiwood_display"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:padding="0dp"
+        android:rotation="-9"
+        android:text="MY LIST"
+        android:textColor="@color/black"
+        android:textSize="50sp"
+        app:backgroundTint="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="@+id/MyList"
+        app:layout_constraintEnd_toEndOf="@+id/MyList"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/MyList"
+        app:layout_constraintTop_toTopOf="@+id/MyList"
+        app:layout_constraintVertical_bias="0.461" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

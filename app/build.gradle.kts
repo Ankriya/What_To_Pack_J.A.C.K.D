@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "student.projects.prog7312_poe_jackd"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -39,18 +39,25 @@ android {
 }
 
 dependencies {
+
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
-    implementation(libs.androidx.core.ktx)
+
+    implementation("androidx.core:core-ktx:1.12.0")
+
+    implementation("androidx.activity:activity-ktx:1.8.2")
+    implementation("androidx.activity:activity:1.8.2")
+
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(libs.androidx.activity)
+
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation ("com.google.android.material:material:1.3.0-alpha03")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation ("com.google.android.material:material:1.3.0-alpha03")
 }
 
 

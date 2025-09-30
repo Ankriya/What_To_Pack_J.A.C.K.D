@@ -10,34 +10,59 @@
     tools:context=".MainActivity">
 
     <ImageView
+        android:id="@+id/curlyArrow1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="4dp"
+        android:rotation="180"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/curly_arrow" />
+
+    <ImageView
+        android:id="@+id/curlyArrow2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/curly_arrow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/logo"
+        android:layout_marginBottom="-40dp"
+        android:layout_marginStart="-60dp"
+        android:rotation="180" />
+
+    <ImageView
         android:id="@+id/logo"
-        android:layout_width="397dp"
-        android:layout_height="398dp"
-        app:srcCompat="@drawable/jacked_logo"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="44dp" />
+        android:layout_width="373dp"
+        android:layout_height="390dp"
+        android:layout_marginTop="100dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/jacked_logo" />
 
     <ImageView
         android:id="@+id/arrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/arrow"
+        android:layout_marginTop="64dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo"
-        tools:layout_editor_absoluteX="56dp"
-        tools:layout_editor_absoluteY="461dp"
-        tools:ignore="MissingConstraints" />
+        app:srcCompat="@drawable/arrow" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="SWIPE RIGHT"
         android:textColor="@color/black"
         android:textSize="38sp"
         app:fontFamily="@font/tantangkiwood_display"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/arrow"
-        app:layout_constraintVertical_bias="0.813" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
