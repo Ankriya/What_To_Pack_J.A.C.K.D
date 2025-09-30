@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "918095376073",
+    "project_id": "whattopackapp-db",
+    "storage_bucket": "whattopackapp-db.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:918095376073:android:ad6d26caef44235c9be718",
+        "android_client_info": {
+          "package_name": "student.projects.prog7312_poe_jackd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "918095376073-7eutolu5sqar7858log2q5g7aqhnuli9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "student.projects.prog7312_poe_jackd",
+            "certificate_hash": "2d9e231809d1504349796a0b6407dca1d41df12d"
+          }
+        },
+        {
+          "client_id": "918095376073-hkg4mu6ukp8tgl2dci6r0smrsc5cirtf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAC7uCONHp6DBEFrNRGeKAMOk250h-nvh4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "918095376073-hkg4mu6ukp8tgl2dci6r0smrsc5cirtf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
