@@ -16,11 +16,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
+    private lateinit var db: FirebaseFirestore
 
     private val googleSignInLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -39,10 +42,9 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
 
-        // Configure Google Sign-In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
@@ -81,11 +83,36 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     Log.d(TAG, "signInWithCredential:success")
                     val user = auth.currentUser
-                    Toast.makeText(this, "Welcome back ${user?.displayName}!", Toast.LENGTH_SHORT).show()
 
-                    // Navigate to main menu
-                    startActivity(Intent(this, MenuActivity::class.java))
-                    finish()
+                    // Save/update user to Firestore
+                    user?.let {
+                        val userData = hashMapOf(
+                            "uid" to it.uid,
+                            "email" to it.email,
+                            "displayName" to it.displayName,
+                            "photoUrl" to it.photoUrl?.toString(),
+                            "lastLogin" to System.currentTimeMillis()
+                        )
+
+                        // Use merge to update existing fields or create new document
+                        db.collection("users").document(it.uid)
+                            .set(userData, SetOptions.merge())
+                            .addOnSuccessListener {
+                                Log.d(TAG, "User data saved/updated in Firestore")
+                                Toast.makeText(this, "Welcome back ${user.displayName}!", Toast.LENGTH_SHORT).show()
+
+                                // Navigate to main menu
+                                startActivity(Intent(this, MenuActivity::class.java))
+                                finish()
+                            }
+                            .addOnFailureListener { e ->
+                                Log.w(TAG, "Error saving user data", e)
+                                // Still navigate even if Firestore save fails
+                                Toast.makeText(this, "Welcome back ${user.displayName}!", Toast.LENGTH_SHORT).show()
+                                startActivity(Intent(this, MenuActivity::class.java))
+                                finish()
+                            }
+                    }
                 } else {
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
                     Toast.makeText(this, "Authentication failed: ${task.exception?.message}",

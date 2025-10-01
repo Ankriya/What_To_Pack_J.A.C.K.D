@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="6dp"
+    app:cardBackgroundColor="#99a1f7da">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/fromText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="FROM: Johannesburg"
+            android:fontFamily="@font/tantangkiwood_display"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:paddingBottom="4dp" />
+
+        <TextView
+            android:id="@+id/toText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TO: Cape Town"
+            android:fontFamily="@font/tantangkiwood_display"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:paddingBottom="4dp" />
+
+        <TextView
+            android:id="@+id/timeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TIME: 10:00 AM"
+            android:fontFamily="@font/tantangkiwood_display"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:paddingBottom="4dp" />
+
+        <TextView
+            android:id="@+id/airportText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="AIRPORT: OR Tambo"
+            android:fontFamily="@font/tantangkiwood_display"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

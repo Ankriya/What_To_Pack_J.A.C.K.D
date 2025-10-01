@@ -16,11 +16,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.firestore.FirebaseFirestore
 
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
+    private lateinit var db: FirebaseFirestore
 
     private val googleSignInLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -39,8 +41,9 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        // Initialize Firebase Auth
+        // Initialize Firebase Auth and Firestore
         auth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
 
         // Configure Google Sign-In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -82,12 +85,33 @@ class RegisterActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     Log.d(TAG, "signInWithCredential:success")
                     val user = auth.currentUser
-                    Toast.makeText(this, "Welcome ${user?.displayName}! Account created.",
-                        Toast.LENGTH_SHORT).show()
 
-                    // Navigate to main menu
-                    startActivity(Intent(this, MenuActivity::class.java))
-                    finish()
+                    // Save user to Firestore
+                    user?.let {
+                        val userData = hashMapOf(
+                            "uid" to it.uid,
+                            "email" to it.email,
+                            "displayName" to it.displayName,
+                            "photoUrl" to it.photoUrl?.toString(),
+                            "createdAt" to System.currentTimeMillis()
+                        )
+
+                        db.collection("users").document(it.uid)
+                            .set(userData)
+                            .addOnSuccessListener {
+                                Log.d(TAG, "User saved to Firestore")
+                                Toast.makeText(this, "Welcome ${user.displayName}! Account created.",
+                                    Toast.LENGTH_SHORT).show()
+
+                                // Navigate to main menu
+                                startActivity(Intent(this, MenuActivity::class.java))
+                                finish()
+                            }
+                            .addOnFailureListener { e ->
+                                Log.w(TAG, "Error saving user to Firestore", e)
+                                Toast.makeText(this, "Error saving user data", Toast.LENGTH_SHORT).show()
+                            }
+                    }
                 } else {
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
                     Toast.makeText(this, "Authentication failed: ${task.exception?.message}",
