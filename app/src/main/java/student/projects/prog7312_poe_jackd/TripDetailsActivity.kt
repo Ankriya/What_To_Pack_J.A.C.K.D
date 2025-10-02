@@ -2,6 +2,10 @@ package student.projects.prog7312_poe_jackd
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -10,16 +14,21 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class TripDetailsActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
 
-    private lateinit var fromInput: EditText
-    private lateinit var toInput: EditText
+    private lateinit var fromInput: AutoCompleteTextView
+    private lateinit var toInput: AutoCompleteTextView
     private lateinit var timeInput: EditText
     private lateinit var airportInput: EditText
+
+    private var countries = listOf<Country>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +41,9 @@ class TripDetailsActivity : AppCompatActivity() {
         toInput = findViewById(R.id.ToInput)
         timeInput = findViewById(R.id.TimeInput)
         airportInput = findViewById(R.id.AirportInput)
+
+        // Load countries from API
+        loadCountries()
 
         findViewById<Button>(R.id.SubmitBtn).setOnClickListener {
             saveTripToFirestore()
@@ -46,6 +58,35 @@ class TripDetailsActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
+
+    private fun loadCountries() {
+        RetrofitClient.instance.getCountries().enqueue(object : Callback<List<Country>> {
+            override fun onResponse(call: Call<List<Country>>, response: Response<List<Country>>) {
+                if (response.isSuccessful) {
+                    countries = response.body() ?: emptyList()
+                    setupCountryDropdowns()
+                } else {
+                    Toast.makeText(this@TripDetailsActivity, "Failed to load countries", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<List<Country>>, t: Throwable) {
+                Toast.makeText(this@TripDetailsActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun setupCountryDropdowns() {
+        val countryNames = countries.map { it.name }
+
+        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, countryNames)
+
+        fromInput.setAdapter(adapter)
+        fromInput.threshold = 1
+
+        toInput.setAdapter(adapter)
+        toInput.threshold = 1
     }
 
     private fun saveTripToFirestore() {
@@ -79,7 +120,7 @@ class TripDetailsActivity : AppCompatActivity() {
             .document(currentUser.uid)
             .collection("trips")
             .add(tripData)
-            .addOnSuccessListener { documentReference ->
+            .addOnSuccessListener {
                 Toast.makeText(this, "Trip saved successfully!", Toast.LENGTH_SHORT).show()
 
                 fromInput.text.clear()

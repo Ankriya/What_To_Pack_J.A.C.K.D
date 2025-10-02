@@ -95,7 +95,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/From" />
 
-            <EditText
+            <AutoCompleteTextView
                 android:id="@+id/FromInput"
                 android:layout_width="0dp"
                 android:layout_height="45dp"
@@ -104,7 +104,7 @@
                 android:background="@drawable/rounded_edittext_bg"
                 android:fontFamily="@font/tantangkiwood_display"
                 android:hint="CURRENCY"
-                android:inputType="textCapCharacters"
+                android:inputType="text"
                 android:paddingStart="12dp"
                 android:paddingEnd="10dp"
                 android:textColor="@android:color/black"
@@ -113,7 +113,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/From" />
 
-            <EditText
+            <AutoCompleteTextView
                 android:id="@+id/ToInput"
                 android:layout_width="0dp"
                 android:layout_height="45dp"
@@ -121,7 +121,7 @@
                 android:background="@drawable/rounded_edittext_bg"
                 android:fontFamily="@font/tantangkiwood_display"
                 android:hint="CURRENCY"
-                android:inputType="textCapCharacters"
+                android:inputType="text"
                 android:paddingStart="12dp"
                 android:paddingEnd="10dp"
                 android:textColor="@android:color/black"
