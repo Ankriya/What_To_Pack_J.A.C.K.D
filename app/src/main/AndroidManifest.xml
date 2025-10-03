@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PROG7312_POE_JACKD">
         <activity
+            android:name=".ViewListDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".EditProfileActivity"
             android:exported="false" />
         <activity
