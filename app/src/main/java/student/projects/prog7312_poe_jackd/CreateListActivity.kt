@@ -1,5 +1,6 @@
 package student.projects.prog7312_poe_jackd
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -46,6 +47,11 @@ class CreateListActivity : AppCompatActivity() {
         addItemBtn.setOnClickListener { addItemToList() }
         saveListBtn.setOnClickListener { saveListToFirestore() }
 
+
+        //New List button
+        findViewById<Button>(R.id.ViewList).setOnClickListener {
+            startActivity(Intent(this, MyListActivity::class.java))
+        }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
