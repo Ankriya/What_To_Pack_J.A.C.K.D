@@ -99,10 +99,12 @@ class CurrencyActivity : AppCompatActivity() {
                         result?.let {
                             resultDisplay.text = "Converted Result: ${it.result} ${it.to}"
                         }
+
                     } else {
                         Toast.makeText(this@CurrencyActivity, "Conversion failed", Toast.LENGTH_SHORT).show()
                     }
                 }
+
 
                 override fun onFailure(call: Call<CurrencyResponse>, t: Throwable) {
                     Toast.makeText(this@CurrencyActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
