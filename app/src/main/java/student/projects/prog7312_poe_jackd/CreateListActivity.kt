@@ -19,22 +19,21 @@ class CreateListActivity : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ListItemsAdapter
-    private val itemsList = mutableListOf<ListItem>()
+    private val itemsList = mutableListOf<String>()
 
     private lateinit var newItemInput: EditText
     private lateinit var addItemBtn: Button
     private lateinit var saveListBtn: Button
-
+    private lateinit var titleInput: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_list)
 
-        setContentView(R.layout.activity_create_list)
-
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
+        titleInput = findViewById(R.id.ListTitleInput)
         newItemInput = findViewById(R.id.NewItemInput)
         addItemBtn = findViewById(R.id.AddItemBtn)
         saveListBtn = findViewById(R.id.SaveList)
@@ -47,8 +46,6 @@ class CreateListActivity : AppCompatActivity() {
         addItemBtn.setOnClickListener { addItemToList() }
         saveListBtn.setOnClickListener { saveListToFirestore() }
 
-
-        //New List button
         findViewById<Button>(R.id.ViewList).setOnClickListener {
             startActivity(Intent(this, MyListActivity::class.java))
         }
@@ -67,7 +64,7 @@ class CreateListActivity : AppCompatActivity() {
             return
         }
 
-        itemsList.add(ListItem(name = itemName))
+        itemsList.add(itemName)
         adapter.notifyItemInserted(itemsList.size - 1)
         newItemInput.text.clear()
     }
@@ -83,22 +80,30 @@ class CreateListActivity : AppCompatActivity() {
             return
         }
 
-        val batch = db.batch()
-        val userListsRef = db.collection("users").document(currentUser.uid).collection("lists")
-        for (item in itemsList) {
-            val docRef = userListsRef.document()
-            batch.set(docRef, hashMapOf(
-                "name" to item.name,
-                "createdAt" to System.currentTimeMillis(),
-                "userId" to currentUser.uid
-            ))
+        val title = titleInput.text.toString().trim()
+        if (title.isEmpty()) {
+            Toast.makeText(this, "Please enter a list title", Toast.LENGTH_SHORT).show()
+            return
         }
 
-        batch.commit()
+        val newList = ListItem(
+            title = title,
+            items = itemsList.toList(),
+            createdAt = System.currentTimeMillis(),
+            userId = currentUser.uid
+        )
+
+        val userListsRef = db.collection("users")
+            .document(currentUser.uid)
+            .collection("lists")
+            .document()
+
+        userListsRef.set(newList)
             .addOnSuccessListener {
                 Toast.makeText(this, "List saved successfully!", Toast.LENGTH_SHORT).show()
                 itemsList.clear()
                 adapter.notifyDataSetChanged()
+                titleInput.text.clear()
             }
             .addOnFailureListener { e ->
                 Toast.makeText(this, "Error saving list: ${e.message}", Toast.LENGTH_SHORT).show()

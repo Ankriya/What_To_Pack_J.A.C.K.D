@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class ListItemsAdapter(private val items: List<ListItem>) : RecyclerView.Adapter<ListItemsAdapter.ListItemViewHolder>() {
+class ListItemsAdapter(private val items: List<String>) : RecyclerView.Adapter<ListItemsAdapter.ListItemViewHolder>() {
 
     class ListItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val itemText: TextView = view.findViewById(R.id.list_item_text) // Make sure item_bullet_point.xml has this
+        val itemText: TextView = view.findViewById(R.id.list_item_text)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListItemViewHolder {
@@ -20,7 +20,7 @@ class ListItemsAdapter(private val items: List<ListItem>) : RecyclerView.Adapter
 
     override fun onBindViewHolder(holder: ListItemViewHolder, position: Int) {
         val item = items[position]
-        holder.itemText.text = "• ${item.name}"
+        holder.itemText.text = "• $item"
     }
 
     override fun getItemCount() = items.size

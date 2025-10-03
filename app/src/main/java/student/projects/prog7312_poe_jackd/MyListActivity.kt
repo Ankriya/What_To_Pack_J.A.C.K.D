@@ -19,7 +19,7 @@ class MyListActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: ListItemsAdapter
+    private lateinit var adapter: UserListsAdapter
     private val itemsList = mutableListOf<ListItem>()
 
     private var listenerRegistration: ListenerRegistration? = null
@@ -34,7 +34,11 @@ class MyListActivity : AppCompatActivity() {
         // RecyclerView setup
         recyclerView = findViewById(R.id.list_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = ListItemsAdapter(itemsList)
+        adapter = UserListsAdapter(itemsList) { selectedList ->
+            val intent = Intent(this, ViewListDetailsActivity::class.java)
+            intent.putExtra("LIST_ID", selectedList.id)
+            startActivity(intent)
+        }
         recyclerView.adapter = adapter
 
         //New List button
@@ -75,7 +79,7 @@ class MyListActivity : AppCompatActivity() {
                     for (doc in snapshots) {
                         val item = ListItem(
                             id = doc.id,
-                            name = doc.getString("name") ?: "",
+                            title = doc.getString("title") ?: "",
                             createdAt = doc.getLong("createdAt") ?: 0L,
                             userId = doc.getString("userId") ?: ""
                         )
