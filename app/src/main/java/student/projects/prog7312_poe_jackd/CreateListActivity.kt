@@ -4,22 +4,26 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
-class CreateListActivity : AppCompatActivity() {
+class CreateListActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: SimpleListItemsAdapter
-
     private val itemsList = mutableListOf<String>()
 
     private lateinit var newItemInput: EditText
@@ -27,13 +31,21 @@ class CreateListActivity : AppCompatActivity() {
     private lateinit var saveListBtn: Button
     private lateinit var titleInput: EditText
 
+    // Drawer variables
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var navView: NavigationView
+    private lateinit var menuButton: ImageButton
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_create_list)
 
+        // Firebase
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
+        // Views
         titleInput = findViewById(R.id.ListTitleInput)
         newItemInput = findViewById(R.id.NewItemInput)
         addItemBtn = findViewById(R.id.AddItemBtn)
@@ -51,11 +63,23 @@ class CreateListActivity : AppCompatActivity() {
             startActivity(Intent(this, MyListActivity::class.java))
         }
 
+        // Edge-to-edge padding
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        // --- Drawer setup ---
+        drawerLayout = findViewById(R.id.drawer_layout)
+        navView = findViewById(R.id.nav_view)
+        menuButton = findViewById(R.id.menu_button)
+
+        menuButton.setOnClickListener {
+            drawerLayout.openDrawer(GravityCompat.START)
+        }
+
+        navView.setNavigationItemSelectedListener(this)
     }
 
     private fun addItemToList() {
@@ -109,5 +133,24 @@ class CreateListActivity : AppCompatActivity() {
             .addOnFailureListener { e ->
                 Toast.makeText(this, "Error saving list: ${e.message}", Toast.LENGTH_SHORT).show()
             }
+    }
+
+    // --- Navigation Drawer Methods ---
+    override fun onNavigationItemSelected(item: android.view.MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.my_search -> startActivity(Intent(this, MySearchActivity::class.java))
+            R.id.my_suitcase -> startActivity(Intent(this, MySuitcaseActivity::class.java))
+            R.id.my_profile -> startActivity(Intent(this, UserProfileActivity::class.java))
+        }
+        drawerLayout.closeDrawer(GravityCompat.START)
+        return true
+    }
+
+    override fun onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
     }
 }

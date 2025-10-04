@@ -1,211 +1,251 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/beige"
     tools:context=".TripDetailsActivity">
 
-    <ImageView
-        android:id="@+id/background"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="centerCrop"
-        app:srcCompat="@drawable/blue_bg"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/TRIPDETAILS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/tantangkiwood_display"
-        android:text="TRIP DETAILS"
-        android:textColor="@color/black"
-        android:textSize="60sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/trip_details_card"
+    <!-- Main content -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="32dp"
-        android:layout_marginTop="24dp"
-        app:cardBackgroundColor="#99a1f7da"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="6dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/TRIPDETAILS">
+        android:layout_height="match_parent"
+        android:background="@color/beige">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <!-- Background -->
+        <ImageView
+            android:id="@+id/background"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/blue_bg"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- Hamburger menu button -->
+        <ImageButton
+            android:id="@+id/menu_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_sort_by_size"
+            android:contentDescription="Menu"
+            android:elevation="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/black"/>
+
+        <!-- Page Title -->
+        <TextView
+            android:id="@+id/TRIPDETAILS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/tantangkiwood_display"
+            android:text="TRIP DETAILS"
+            android:textColor="@color/black"
+            android:textSize="60sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Trip details card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/trip_details_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="24dp"
+            app:cardBackgroundColor="#99a1f7da"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="6dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/TRIPDETAILS">
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/vertical_divider"
-                android:layout_width="wrap_content"
+            <!-- Inner ConstraintLayout for inputs -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.5" />
+                android:padding="16dp">
 
-            <TextView
-                android:id="@+id/From"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/tantangkiwood_display"
-                android:text="FROM:"
-                android:textColor="@color/black"
-                android:textSize="35sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <!-- Vertical guideline -->
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/vertical_divider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
 
-            <AutoCompleteTextView
-                android:id="@+id/FromInput"
-                android:layout_width="0dp"
-                android:layout_height="45dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/rounded_edittext_bg"
-                android:fontFamily="@font/tantangkiwood_display"
-                android:hint="ENTER LOCATION"
-                android:inputType="text"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                android:textColor="@android:color/black"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toStartOf="@id/vertical_divider"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/From" />
+                <!-- From -->
+                <TextView
+                    android:id="@+id/From"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/tantangkiwood_display"
+                    android:text="FROM:"
+                    android:textColor="@color/black"
+                    android:textSize="35sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/To"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/tantangkiwood_display"
-                android:text="TO:"
-                android:textColor="@color/black"
-                android:textSize="35sp"
-                app:layout_constraintStart_toStartOf="@id/vertical_divider"
-                app:layout_constraintTop_toTopOf="parent" />
+                <AutoCompleteTextView
+                    android:id="@+id/FromInput"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/rounded_edittext_bg"
+                    android:fontFamily="@font/tantangkiwood_display"
+                    android:hint="ENTER LOCATION"
+                    android:inputType="text"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toStartOf="@id/vertical_divider"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/From" />
 
-            <AutoCompleteTextView
-                android:id="@+id/ToInput"
-                android:layout_width="0dp"
-                android:layout_height="45dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/rounded_edittext_bg"
-                android:fontFamily="@font/tantangkiwood_display"
-                android:hint="DESTINATION"
-                android:inputType="text"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                android:textColor="@android:color/black"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/vertical_divider"
-                app:layout_constraintTop_toBottomOf="@id/To" />
+                <!-- To -->
+                <TextView
+                    android:id="@+id/To"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/tantangkiwood_display"
+                    android:text="TO:"
+                    android:textColor="@color/black"
+                    android:textSize="35sp"
+                    app:layout_constraintStart_toStartOf="@id/vertical_divider"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/TimeLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:fontFamily="@font/tantangkiwood_display"
-                android:text="TIME:"
-                android:textColor="@color/black"
-                android:textSize="35sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ToInput" />
+                <AutoCompleteTextView
+                    android:id="@+id/ToInput"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/rounded_edittext_bg"
+                    android:fontFamily="@font/tantangkiwood_display"
+                    android:hint="DESTINATION"
+                    android:inputType="text"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/vertical_divider"
+                    app:layout_constraintTop_toBottomOf="@id/To" />
 
-            <EditText
-                android:id="@+id/TimeInput"
-                android:layout_width="157dp"
-                android:layout_height="45dp"
-                android:layout_marginTop="4dp"
-                android:background="@drawable/rounded_edittext_bg"
-                android:fontFamily="@font/tantangkiwood_display"
-                android:hint="ENTER TIME"
-                android:inputType="text"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                android:textColor="@android:color/black"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/TimeLabel" />
+                <!-- Time -->
+                <TextView
+                    android:id="@+id/TimeLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/tantangkiwood_display"
+                    android:text="TIME:"
+                    android:textColor="@color/black"
+                    android:textSize="35sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ToInput" />
 
-            <TextView
-                android:id="@+id/LocationLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:fontFamily="@font/tantangkiwood_display"
-                android:text="LOCATION (AIRPORT):"
-                android:textColor="@color/black"
-                android:textSize="35sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TimeInput" />
+                <EditText
+                    android:id="@+id/TimeInput"
+                    android:layout_width="157dp"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/rounded_edittext_bg"
+                    android:fontFamily="@font/tantangkiwood_display"
+                    android:hint="ENTER TIME"
+                    android:inputType="text"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/TimeLabel" />
 
-            <EditText
-                android:id="@+id/AirportInput"
-                android:layout_width="200dp"
-                android:layout_height="45dp"
-                android:layout_marginTop="4dp"
-                android:background="@drawable/rounded_edittext_bg"
-                android:fontFamily="@font/tantangkiwood_display"
-                android:hint="ENTER AIRPORT"
-                android:inputType="textPersonName"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                android:textColor="@android:color/black"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/LocationLabel" />
+                <!-- Location / Airport -->
+                <TextView
+                    android:id="@+id/LocationLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/tantangkiwood_display"
+                    android:text="LOCATION (AIRPORT):"
+                    android:textColor="@color/black"
+                    android:textSize="35sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TimeInput" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <EditText
+                    android:id="@+id/AirportInput"
+                    android:layout_width="200dp"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/rounded_edittext_bg"
+                    android:fontFamily="@font/tantangkiwood_display"
+                    android:hint="ENTER AIRPORT"
+                    android:inputType="textPersonName"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/LocationLabel" />
 
-    </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/SubmitBtn"
-        android:layout_width="150dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="32dp"
-        android:backgroundTint="@color/pastelPurple"
-        android:fontFamily="@font/tantangkiwood_display"
-        android:text="SUBMIT"
-        android:textColor="@android:color/black"
-        android:textSize="30sp"
-        app:layout_constraintTop_toBottomOf="@id/trip_details_card"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.cardview.widget.CardView>
 
-    <Button
-        android:id="@+id/ViewTripsBtn"
-        android:layout_width="190dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/pastelGreen"
-        android:fontFamily="@font/tantangkiwood_display"
-        android:text="VIEW TRIPS"
-        android:textColor="@android:color/black"
-        android:textSize="30sp"
-        app:layout_constraintTop_toBottomOf="@id/SubmitBtn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <!-- Buttons -->
+        <Button
+            android:id="@+id/SubmitBtn"
+            android:layout_width="150dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="@color/pastelPurple"
+            android:fontFamily="@font/tantangkiwood_display"
+            android:text="SUBMIT"
+            android:textColor="@android:color/black"
+            android:textSize="30sp"
+            app:layout_constraintTop_toBottomOf="@id/trip_details_card"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/ViewTripsBtn"
+            android:layout_width="190dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/pastelGreen"
+            android:fontFamily="@font/tantangkiwood_display"
+            android:text="VIEW TRIPS"
+            android:textColor="@android:color/black"
+            android:textSize="30sp"
+            app:layout_constraintTop_toBottomOf="@id/SubmitBtn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Navigation Drawer -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu="@menu/navigation_menu" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

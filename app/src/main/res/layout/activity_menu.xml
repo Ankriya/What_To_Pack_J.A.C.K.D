@@ -1,86 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/beige"
     tools:context=".MenuActivity">
 
-    <TextView
-        android:id="@+id/Menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/tantangkiwood_display"
-        android:text="MENU"
-        android:textColor="@color/black"
-        android:textSize="75sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <!-- Main screen content -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/beige">
 
-    <ImageView
-        android:id="@+id/MenuList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/Menu"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/menu" />
+        <TextView
+            android:id="@+id/Menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/tantangkiwood_display"
+            android:text="MENU"
+            android:textColor="@color/black"
+            android:textSize="75sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/My"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/tantangkiwood_display"
-        android:text="MY"
-        android:textColor="@color/black"
-        android:textSize="65sp"
-        app:layout_constraintBottom_toBottomOf="@+id/MenuList"
-        app:layout_constraintEnd_toEndOf="@+id/MenuList"
-        app:layout_constraintHorizontal_bias="0.464"
-        app:layout_constraintStart_toStartOf="@+id/MenuList"
-        app:layout_constraintTop_toTopOf="@+id/MenuList"
-        app:layout_constraintVertical_bias="0.235" />
+        <ImageView
+            android:id="@+id/MenuList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/Menu"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/menu" />
 
-    <Button
-        android:id="@+id/SearchBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/tantangkiwood_display"
-        android:minWidth="0dp"
-        android:minHeight="0dp"
-        android:padding="0dp"
-        android:text="SEARCH"
-        android:textColor="@color/black"
-        android:textSize="40sp"
-        app:backgroundTint="@android:color/transparent"
-        app:layout_constraintHorizontal_bias="0.85"
-        app:layout_constraintVertical_bias="0.25"
-        app:layout_constraintTop_toTopOf="@+id/MenuList"
-        app:layout_constraintBottom_toBottomOf="@+id/MenuList"
-        app:layout_constraintStart_toStartOf="@+id/MenuList"
-        app:layout_constraintEnd_toEndOf="@+id/MenuList" />
+        <TextView
+            android:id="@+id/My"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/tantangkiwood_display"
+            android:text="MY"
+            android:textColor="@color/black"
+            android:textSize="65sp"
+            app:layout_constraintBottom_toBottomOf="@+id/MenuList"
+            app:layout_constraintEnd_toEndOf="@+id/MenuList"
+            app:layout_constraintHorizontal_bias="0.464"
+            app:layout_constraintStart_toStartOf="@+id/MenuList"
+            app:layout_constraintTop_toTopOf="@+id/MenuList"
+            app:layout_constraintVertical_bias="0.235" />
 
-    <Button
-        android:id="@+id/SuitcaseBtn"
+        <Button
+            android:id="@+id/SearchBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/tantangkiwood_display"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:padding="0dp"
+            android:text="SEARCH"
+            android:textColor="@color/black"
+            android:textSize="40sp"
+            app:backgroundTint="@android:color/transparent"
+            app:layout_constraintHorizontal_bias="0.85"
+            app:layout_constraintVertical_bias="0.25"
+            app:layout_constraintTop_toTopOf="@+id/MenuList"
+            app:layout_constraintBottom_toBottomOf="@+id/MenuList"
+            app:layout_constraintStart_toStartOf="@+id/MenuList"
+            app:layout_constraintEnd_toEndOf="@+id/MenuList" />
+
+        <Button
+            android:id="@+id/SuitcaseBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/tantangkiwood_display"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:padding="0dp"
+            android:text="MY SUITCASE"
+            android:textColor="@color/black"
+            android:textSize="40sp"
+            app:backgroundTint="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="@+id/MenuList"
+            app:layout_constraintEnd_toEndOf="@+id/MenuList"
+            app:layout_constraintHorizontal_bias="0.211"
+            app:layout_constraintStart_toStartOf="@+id/MenuList"
+            app:layout_constraintTop_toTopOf="@+id/MenuList"
+            app:layout_constraintVertical_bias="0.535" />
+
+        <!-- Burger Menu Button -->
+        <ImageButton
+            android:id="@+id/menu_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_sort_by_size"
+            android:contentDescription="Menu"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/black" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Navigation Drawer -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/tantangkiwood_display"
-        android:minWidth="0dp"
-        android:minHeight="0dp"
-        android:padding="0dp"
-        android:text="MY SUITCASE"
-        android:textColor="@color/black"
-        android:textSize="40sp"
-        app:backgroundTint="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="@+id/MenuList"
-        app:layout_constraintEnd_toEndOf="@+id/MenuList"
-        app:layout_constraintHorizontal_bias="0.211"
-        app:layout_constraintStart_toStartOf="@+id/MenuList"
-        app:layout_constraintTop_toTopOf="@+id/MenuList"
-        app:layout_constraintVertical_bias="0.535" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu="@menu/navigation_menu" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

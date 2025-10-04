@@ -5,16 +5,20 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.Query
+import android.widget.ImageButton
 
-class MyListActivity : AppCompatActivity() {
+class MyListActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
@@ -24,12 +28,24 @@ class MyListActivity : AppCompatActivity() {
 
     private var listenerRegistration: ListenerRegistration? = null
 
+    private lateinit var drawerLayout: DrawerLayout
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_list)
 
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
+
+        // Drawer setup
+        drawerLayout = findViewById(R.id.drawer_layout)
+        val navigationView: NavigationView = findViewById(R.id.nav_view)
+        navigationView.setNavigationItemSelectedListener(this)
+
+        // Hamburger menu button
+        findViewById<ImageButton>(R.id.menu_button).setOnClickListener {
+            drawerLayout.openDrawer(GravityCompat.START)
+        }
 
         // RecyclerView setup
         recyclerView = findViewById(R.id.list_recycler_view)
@@ -41,7 +57,7 @@ class MyListActivity : AppCompatActivity() {
         }
         recyclerView.adapter = adapter
 
-        //New List button
+        // New List button
         findViewById<Button>(R.id.new_list_button).setOnClickListener {
             startActivity(Intent(this, CreateListActivity::class.java))
         }
@@ -49,6 +65,7 @@ class MyListActivity : AppCompatActivity() {
         // Load list items in real time
         startListeningForListItems()
 
+        // Handle system window insets
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -96,7 +113,25 @@ class MyListActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        // Remove listener to prevent memory leaks
         listenerRegistration?.remove()
+    }
+
+    // Drawer navigation
+    override fun onNavigationItemSelected(item: android.view.MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.my_search -> startActivity(Intent(this, MySearchActivity::class.java))
+            R.id.my_suitcase -> startActivity(Intent(this, MySuitcaseActivity::class.java))
+            R.id.my_profile -> startActivity(Intent(this, UserProfileActivity::class.java))
+        }
+        drawerLayout.closeDrawer(GravityCompat.START)
+        return true
+    }
+
+    override fun onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
     }
 }

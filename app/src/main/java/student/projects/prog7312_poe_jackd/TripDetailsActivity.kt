@@ -2,27 +2,31 @@ package student.projects.prog7312_poe_jackd
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class TripDetailsActivity : AppCompatActivity() {
+class TripDetailsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
 
+    private lateinit var drawerLayout: DrawerLayout
     private lateinit var fromInput: AutoCompleteTextView
     private lateinit var toInput: AutoCompleteTextView
     private lateinit var timeInput: EditText
@@ -36,6 +40,16 @@ class TripDetailsActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
+
+        // Drawer setup
+        drawerLayout = findViewById(R.id.drawer_layout)
+        val navigationView: NavigationView = findViewById(R.id.nav_view)
+        navigationView.setNavigationItemSelectedListener(this)
+
+        // Hamburger menu button
+        findViewById<ImageButton>(R.id.menu_button).setOnClickListener {
+            drawerLayout.openDrawer(GravityCompat.START)
+        }
 
         fromInput = findViewById(R.id.FromInput)
         toInput = findViewById(R.id.ToInput)
@@ -79,19 +93,15 @@ class TripDetailsActivity : AppCompatActivity() {
 
     private fun setupCountryDropdowns() {
         val countryNames = countries.map { it.name }
-
         val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, countryNames)
-
         fromInput.setAdapter(adapter)
         fromInput.threshold = 1
-
         toInput.setAdapter(adapter)
         toInput.threshold = 1
     }
 
     private fun saveTripToFirestore() {
         val currentUser = auth.currentUser
-
         if (currentUser == null) {
             Toast.makeText(this, "Please log in first", Toast.LENGTH_SHORT).show()
             return
@@ -122,7 +132,6 @@ class TripDetailsActivity : AppCompatActivity() {
             .add(tripData)
             .addOnSuccessListener {
                 Toast.makeText(this, "Trip saved successfully!", Toast.LENGTH_SHORT).show()
-
                 fromInput.text.clear()
                 toInput.text.clear()
                 timeInput.text.clear()
@@ -131,5 +140,23 @@ class TripDetailsActivity : AppCompatActivity() {
             .addOnFailureListener { e ->
                 Toast.makeText(this, "Error saving trip: ${e.message}", Toast.LENGTH_SHORT).show()
             }
+    }
+
+    override fun onNavigationItemSelected(item: android.view.MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.my_search -> startActivity(Intent(this, MySearchActivity::class.java))
+            R.id.my_suitcase -> startActivity(Intent(this, MySuitcaseActivity::class.java))
+            R.id.my_profile -> startActivity(Intent(this, UserProfileActivity::class.java))
+        }
+        drawerLayout.closeDrawer(GravityCompat.START)
+        return true
+    }
+
+    override fun onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
     }
 }

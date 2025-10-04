@@ -1,20 +1,26 @@
 package student.projects.prog7312_poe_jackd
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.material.navigation.NavigationView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CurrencyActivity : AppCompatActivity() {
+class CurrencyActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var fromInput: AutoCompleteTextView
     private lateinit var toInput: AutoCompleteTextView
@@ -23,8 +29,14 @@ class CurrencyActivity : AppCompatActivity() {
 
     private var countries = listOf<Country>()
 
+    // Drawer variables
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var navView: NavigationView
+    private lateinit var menuButton: ImageButton
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_currency)
 
         fromInput = findViewById(R.id.FromInput)
@@ -39,11 +51,23 @@ class CurrencyActivity : AppCompatActivity() {
             convertCurrency()
         }
 
+        // Edge-to-edge padding
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        // --- Drawer setup ---
+        drawerLayout = findViewById(R.id.drawer_layout)
+        navView = findViewById(R.id.nav_view)
+        menuButton = findViewById(R.id.menu_button)
+
+        menuButton.setOnClickListener {
+            drawerLayout.openDrawer(GravityCompat.START)
+        }
+
+        navView.setNavigationItemSelectedListener(this)
     }
 
     private fun loadCountries() {
@@ -105,10 +129,28 @@ class CurrencyActivity : AppCompatActivity() {
                     }
                 }
 
-
                 override fun onFailure(call: Call<CurrencyResponse>, t: Throwable) {
                     Toast.makeText(this@CurrencyActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
                 }
             })
+    }
+
+    // --- Navigation Drawer Methods ---
+    override fun onNavigationItemSelected(item: android.view.MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.my_search -> startActivity(Intent(this, MySearchActivity::class.java))
+            R.id.my_suitcase -> startActivity(Intent(this, MySuitcaseActivity::class.java))
+            R.id.my_profile -> startActivity(Intent(this, UserProfileActivity::class.java))
+        }
+        drawerLayout.closeDrawer(GravityCompat.START)
+        return true
+    }
+
+    override fun onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
     }
 }
