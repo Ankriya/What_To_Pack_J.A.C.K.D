@@ -1,142 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/sky_blue"
     tools:context=".MySearchActivity">
 
-    <TextView
-        android:id="@+id/mySearch"
+    <!-- Your EXACT existing layout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/sky_blue">
+
+        <TextView
+            android:id="@+id/mySearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/tantangkiwood_display"
+            android:text="MY SEARCH"
+            android:textColor="@color/black"
+            android:textSize="75sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.505"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/calendar_icon"
+            android:layout_width="142dp"
+            android:layout_height="135dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="52dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mySearch"
+            app:srcCompat="@drawable/calendar" />
+
+        <Button
+            android:id="@+id/EventsBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/tantangkiwood_display"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:padding="0dp"
+            android:text="EVENTS"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:backgroundTint="@android:color/transparent"
+            app:layout_constraintTop_toTopOf="@+id/calendar_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/calendar_icon"
+            app:layout_constraintStart_toStartOf="@+id/calendar_icon"
+            app:layout_constraintEnd_toEndOf="@+id/calendar_icon"
+            app:layout_constraintVertical_bias="0.25" />
+
+        <ImageView
+            android:id="@+id/clouds_icon"
+            android:layout_width="181dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mySearch"
+            app:srcCompat="@drawable/clouds" />
+
+        <Button
+            android:id="@+id/WeatherBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/tantangkiwood_display"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:padding="0dp"
+            android:text="WEATHER"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:backgroundTint="@android:color/transparent"
+            app:layout_constraintTop_toTopOf="@+id/clouds_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/clouds_icon"
+            app:layout_constraintStart_toStartOf="@+id/clouds_icon"
+            app:layout_constraintEnd_toEndOf="@+id/clouds_icon"
+            app:layout_constraintVertical_bias="0.65" />
+
+        <ImageView
+            android:id="@+id/bottom_background_elements"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/redcar_restaurant_money"
+            app:layout_constraintTop_toBottomOf="@+id/calendar_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <Button
+            android:id="@+id/RestaurantBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/tantangkiwood_display"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:padding="0dp"
+            android:text="RESTAURANTS"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:backgroundTint="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="@+id/bottom_background_elements"
+            app:layout_constraintEnd_toEndOf="@+id/bottom_background_elements"
+            app:layout_constraintHorizontal_bias="0.776"
+            app:layout_constraintStart_toStartOf="@+id/bottom_background_elements"
+            app:layout_constraintTop_toTopOf="@+id/bottom_background_elements"
+            app:layout_constraintVertical_bias="0.328" />
+
+        <TextView
+            android:id="@+id/TransportBtn"
+            android:layout_width="195dp"
+            android:layout_height="84dp"
+            android:fontFamily="@font/tantangkiwood_display"
+            android:text="TRANSPORT"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/bottom_background_elements"
+            app:layout_constraintEnd_toEndOf="@+id/bottom_background_elements"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/bottom_background_elements"
+            app:layout_constraintTop_toTopOf="@+id/bottom_background_elements"
+            app:layout_constraintVertical_bias="0.951" />
+
+        <TextView
+            android:id="@+id/CurrencyBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/tantangkiwood_display"
+            android:text="CURRENCY"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/bottom_background_elements"
+            app:layout_constraintEnd_toEndOf="@+id/bottom_background_elements"
+            app:layout_constraintHorizontal_bias="0.866"
+            app:layout_constraintStart_toStartOf="@+id/bottom_background_elements"
+            app:layout_constraintTop_toTopOf="@+id/bottom_background_elements"
+            app:layout_constraintVertical_bias="0.921" />
+
+
+        <ImageButton
+            android:id="@+id/menu_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_sort_by_size"
+            android:contentDescription="Menu"
+            android:tint="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Navigation Drawer -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/tantangkiwood_display"
-        android:text="MY SEARCH"
-        android:textColor="@color/black"
-        android:textSize="75sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu="@menu/navigation_menu" />
 
-    <ImageView
-        android:id="@+id/calendar_icon"
-        android:layout_width="142dp"
-        android:layout_height="135dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="52dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mySearch"
-        app:srcCompat="@drawable/calendar" />
-
-    <Button
-        android:id="@+id/EventsBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/tantangkiwood_display"
-        android:minWidth="0dp"
-        android:minHeight="0dp"
-        android:padding="0dp"
-        android:text="EVENTS"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:backgroundTint="@android:color/transparent"
-        app:layout_constraintTop_toTopOf="@+id/calendar_icon"
-        app:layout_constraintBottom_toBottomOf="@+id/calendar_icon"
-        app:layout_constraintStart_toStartOf="@+id/calendar_icon"
-        app:layout_constraintEnd_toEndOf="@+id/calendar_icon"
-        app:layout_constraintVertical_bias="0.25" />
-
-    <ImageView
-        android:id="@+id/clouds_icon"
-        android:layout_width="181dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mySearch"
-        app:srcCompat="@drawable/clouds" />
-
-    <Button
-        android:id="@+id/WeatherBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/tantangkiwood_display"
-        android:minWidth="0dp"
-        android:minHeight="0dp"
-        android:padding="0dp"
-        android:text="WEATHER"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:backgroundTint="@android:color/transparent"
-        app:layout_constraintTop_toTopOf="@+id/clouds_icon"
-        app:layout_constraintBottom_toBottomOf="@+id/clouds_icon"
-        app:layout_constraintStart_toStartOf="@+id/clouds_icon"
-        app:layout_constraintEnd_toEndOf="@+id/clouds_icon"
-        app:layout_constraintVertical_bias="0.65" />
-
-    <ImageView
-        android:id="@+id/bottom_background_elements"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/redcar_restaurant_money"
-        app:layout_constraintTop_toBottomOf="@+id/calendar_icon"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-    <Button
-        android:id="@+id/RestaurantBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/tantangkiwood_display"
-        android:minWidth="0dp"
-        android:minHeight="0dp"
-        android:padding="0dp"
-        android:text="RESTAURANTS"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:backgroundTint="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="@+id/bottom_background_elements"
-        app:layout_constraintEnd_toEndOf="@+id/bottom_background_elements"
-        app:layout_constraintHorizontal_bias="0.776"
-        app:layout_constraintStart_toStartOf="@+id/bottom_background_elements"
-        app:layout_constraintTop_toTopOf="@+id/bottom_background_elements"
-        app:layout_constraintVertical_bias="0.328" />
-
-    <TextView
-        android:id="@+id/TransportBtn"
-        android:layout_width="195dp"
-        android:layout_height="84dp"
-        android:fontFamily="@font/tantangkiwood_display"
-        android:text="TRANSPORT"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/bottom_background_elements"
-        app:layout_constraintEnd_toEndOf="@+id/bottom_background_elements"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/bottom_background_elements"
-        app:layout_constraintTop_toTopOf="@+id/bottom_background_elements"
-        app:layout_constraintVertical_bias="0.951" />
-
-    <TextView
-        android:id="@+id/CurrencyBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/tantangkiwood_display"
-        android:text="CURRENCY"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/bottom_background_elements"
-        app:layout_constraintEnd_toEndOf="@+id/bottom_background_elements"
-        app:layout_constraintHorizontal_bias="0.866"
-        app:layout_constraintStart_toStartOf="@+id/bottom_background_elements"
-        app:layout_constraintTop_toTopOf="@+id/bottom_background_elements"
-        app:layout_constraintVertical_bias="0.921" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
