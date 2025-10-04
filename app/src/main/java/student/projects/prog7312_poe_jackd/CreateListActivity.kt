@@ -18,7 +18,8 @@ class CreateListActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: ListItemsAdapter
+    private lateinit var adapter: SimpleListItemsAdapter
+
     private val itemsList = mutableListOf<String>()
 
     private lateinit var newItemInput: EditText
@@ -40,7 +41,7 @@ class CreateListActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.items_recycler_view)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = ListItemsAdapter(itemsList)
+        adapter = SimpleListItemsAdapter(itemsList)
         recyclerView.adapter = adapter
 
         addItemBtn.setOnClickListener { addItemToList() }

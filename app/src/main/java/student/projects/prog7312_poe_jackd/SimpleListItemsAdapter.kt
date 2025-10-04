@@ -9,19 +9,11 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import student.projects.prog7312_poe_jackd.R
 
-class ListItemsAdapter(
-    private val items: MutableList<String>,
-    private val listId: String,
-    private val context: Context
-) : RecyclerView.Adapter<ListItemsAdapter.ListItemViewHolder>() {
-
-    private val db = FirebaseFirestore.getInstance()
-    private val currentUser = FirebaseAuth.getInstance().currentUser
-    private var editMode: Boolean = false // 🔹 Track whether item buttons are visible
+class SimpleListItemsAdapter(
+    private val items: MutableList<String>
+) : RecyclerView.Adapter<SimpleListItemsAdapter.ListItemViewHolder>() {
 
     class ListItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val itemText: TextView = view.findViewById(R.id.list_item_text)
@@ -39,39 +31,33 @@ class ListItemsAdapter(
         val item = items[position]
         holder.itemText.text = "• $item"
 
-        // 🔹 Show/hide item buttons based on edit mode
-        holder.editBtn.visibility = if (editMode) View.VISIBLE else View.GONE
-        holder.deleteBtn.visibility = if (editMode) View.VISIBLE else View.GONE
-
-        // ✏️ Edit item
+        // ✏️ Edit item locally
         holder.editBtn.setOnClickListener {
-            val input = EditText(context)
+            val input = EditText(holder.itemView.context)
             input.setText(item)
 
-            AlertDialog.Builder(context)
+            AlertDialog.Builder(holder.itemView.context)
                 .setTitle("Edit Item")
                 .setView(input)
                 .setPositiveButton("Save") { _, _ ->
                     val newItem = input.text.toString().trim()
-                    if (newItem.isNotEmpty() && currentUser != null) {
+                    if (newItem.isNotEmpty()) {
                         items[position] = newItem
                         notifyItemChanged(position)
-                        updateFirestore()
                     }
                 }
                 .setNegativeButton("Cancel", null)
                 .show()
         }
 
-        // 🗑️ Delete item
+        // 🗑️ Delete item locally
         holder.deleteBtn.setOnClickListener {
-            AlertDialog.Builder(context)
+            AlertDialog.Builder(holder.itemView.context)
                 .setTitle("Delete Item")
                 .setMessage("Are you sure you want to delete this item?")
                 .setPositiveButton("Yes") { _, _ ->
                     items.removeAt(position)
                     notifyItemRemoved(position)
-                    updateFirestore()
                 }
                 .setNegativeButton("No", null)
                 .show()
@@ -79,20 +65,4 @@ class ListItemsAdapter(
     }
 
     override fun getItemCount() = items.size
-
-    private fun updateFirestore() {
-        currentUser?.let {
-            db.collection("users")
-                .document(it.uid)
-                .collection("lists")
-                .document(listId)
-                .update("items", items)
-        }
-    }
-
-    // 🔹 Public method to toggle edit mode from activity
-    fun setEditMode(enabled: Boolean) {
-        editMode = enabled
-        notifyDataSetChanged()
-    }
 }
