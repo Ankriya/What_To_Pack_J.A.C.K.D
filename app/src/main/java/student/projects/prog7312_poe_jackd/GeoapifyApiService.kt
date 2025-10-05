@@ -14,6 +14,16 @@ interface GeoapifyApiService {
         @Query("apiKey") apiKey: String
     ): Call<GeoapifyResponse>
 
+    // Search for the venue
+    @GET("v2/places")
+    fun getPlaces(
+        @Query("categories") categories: String,
+        @Query("filter") filter: String,
+        @Query("bias") bias: String,
+        @Query("limit") limit: Int = 15,
+        @Query("apiKey") apiKey: String
+    ): Call<GeoapifyResponse>
+
     // Places search by location (radius) and category=catering. this is for the search request.
     @GET("v2/places?categories=catering")
     fun getRestaurantsByLocation(

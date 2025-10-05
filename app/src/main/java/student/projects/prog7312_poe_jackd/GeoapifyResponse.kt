@@ -13,7 +13,8 @@ data class Properties(
     val address_line2: String?,
     val lon: Double,
     val lat: Double,
-    val datasource: DataSource?
+    val datasource: DataSource?,
+    val categories: List<String>?
 )
 
 data class DataSource(

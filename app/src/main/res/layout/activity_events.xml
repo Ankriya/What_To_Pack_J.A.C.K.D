@@ -51,8 +51,8 @@
             android:background="@android:color/transparent"
             android:elevation="0dp">
 
-            <com.google.android.material.search.SearchBar
-                android:id="@+id/search_bar"
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/search_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@android:color/white"
