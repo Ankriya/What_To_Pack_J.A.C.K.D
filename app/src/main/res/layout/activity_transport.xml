@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WeatherActivity">
+    tools:context=".TransportActivity">
 
     <!-- Main layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -56,171 +55,91 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Guideline -->
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_card_split"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.70" />
-
-        <!-- Location Card -->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/location_card"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="8dp"
-            app:cardBackgroundColor="#CCFFFFFF"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="6dp"
-            app:layout_constraintTop_toBottomOf="@id/TransportTitle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/guideline_card_split">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-                    <ImageView
-                        android:id="@+id/FromPlaceholder"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginEnd="8dp"
-                        app:srcCompat="@drawable/greenplaceholder" />
-                    <EditText
-                        android:id="@+id/FromLocation"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/tantangkiwood_display"
-                        android:hint="From Here" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginTop="8dp">
-                    <ImageView
-                        android:id="@+id/ViaPlaceholder"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginEnd="8dp"
-                        app:srcCompat="@drawable/blueplaceholder" />
-                    <EditText
-                        android:id="@+id/ViaPoint"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/tantangkiwood_display"
-                        android:hint="Via Point" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginTop="8dp">
-                    <ImageView
-                        android:id="@+id/ToPlaceholder"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginEnd="8dp"
-                        app:srcCompat="@drawable/redplaceholder" />
-                    <EditText
-                        android:id="@+id/ToLocation"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/tantangkiwood_display"
-                        android:hint="To Here" />
-                </LinearLayout>
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- Transport Card -->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/transport_card"
+        <!-- Transport search layout -->
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
-            app:cardBackgroundColor="#CCFFFFFF"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="6dp"
             app:layout_constraintTop_toBottomOf="@id/TransportTitle"
-            app:layout_constraintBottom_toBottomOf="@id/location_card"
-            app:layout_constraintStart_toEndOf="@id/guideline_card_split"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:padding="16dp">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:padding="8dp"
-                android:gravity="center"
-                android:weightSum="4">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/bus_icon"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/searchContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    app:boxBackgroundMode="filled"
+                    app:boxBackgroundColor="#FFFFFF"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeColor="@android:color/transparent"
+                    app:boxCornerRadiusTopStart="24dp"
+                    app:boxCornerRadiusTopEnd="24dp"
+                    app:boxCornerRadiusBottomStart="24dp"
+                    app:boxCornerRadiusBottomEnd="24dp"
+                    app:startIconDrawable="@android:drawable/ic_menu_search"
+                    app:startIconTint="@color/black"
+                    app:startIconContentDescription="Search Icon"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    app:paddingStart="12dp"
+                    app:paddingEnd="12dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/locationInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter city..."
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
+                        android:inputType="textCapWords"
+                        android:background="@null"
+                        android:paddingStart="40dp"
+                        android:paddingEnd="12dp"
+                        android:paddingTop="20dp"
+                        android:paddingBottom="20dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Search button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/searchButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Find Nearby Transport"
+                    android:textSize="18sp"
+                    app:backgroundTint="@color/pastelRed"
+                    android:textColor="#FFFFFF"
+                    android:paddingHorizontal="32dp"
+                    android:paddingVertical="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_gravity="center_horizontal"
+                    app:cornerRadius="16dp"/>
+
+                <!-- RecyclerView -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:scaleType="fitCenter"
-                    android:padding="4dp"
-                    app:srcCompat="@drawable/bus" />
-
-                <ImageView
-                    android:id="@+id/car_icon"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:scaleType="fitCenter"
-                    android:padding="4dp"
-                    app:srcCompat="@drawable/car" />
-
-                <ImageView
-                    android:id="@+id/train_icon"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:scaleType="fitCenter"
-                    android:padding="4dp"
-                    app:srcCompat="@drawable/train" />
-
-                <ImageView
-                    android:id="@+id/plane_icon"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:scaleType="fitCenter"
-                    android:padding="4dp"
-                    app:srcCompat="@drawable/plane" />
-
+                    android:layout_marginTop="16dp"/>
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Navigation Drawer -->
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:menu="@menu/navigation_menu" />
+        <!-- Navigation Drawer -->
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:menu="@menu/navigation_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

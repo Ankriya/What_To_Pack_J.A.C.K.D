@@ -103,14 +103,17 @@ class MySearchActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_search2)
 
-
         drawerLayout = findViewById(R.id.drawer_layout)
-
 
         val navigationView: NavigationView = findViewById(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener(this)
 
+        // --- Hamburger menu button ---
+        findViewById<ImageView>(R.id.menu_button).setOnClickListener {
+            drawerLayout.openDrawer(GravityCompat.START)
+        }
 
+        // Event button
         findViewById<ImageView>(R.id.EventsBtn).setOnClickListener {
             startActivity(Intent(this, EventsActivity::class.java))
         }
@@ -135,6 +138,7 @@ class MySearchActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
             startActivity(Intent(this, CurrencyActivity::class.java))
         }
     }
+
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {

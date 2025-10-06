@@ -14,7 +14,8 @@ data class Properties(
     val lon: Double,
     val lat: Double,
     val datasource: DataSource?,
-    val categories: List<String>?
+    val categories: List<String>?,
+    val city: String?
 )
 
 data class DataSource(

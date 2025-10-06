@@ -32,4 +32,12 @@ interface GeoapifyApiService {
         @Query("limit") limit: Int = 15,
         @Query("apiKey") apiKey: String
     ): Call<GeoapifyResponse>
+
+    @GET("v2/places")
+    fun getNearbyTransport(
+        @Query("categories") categories: String,  // e.g., "public_transport,airport"
+        @Query("filter") filter: String,          // e.g., "circle:lon,lat,radius"
+        @Query("limit") limit: Int = 10,
+        @Query("apiKey") apiKey: String
+    ): Call<GeoapifyResponse>
 }
