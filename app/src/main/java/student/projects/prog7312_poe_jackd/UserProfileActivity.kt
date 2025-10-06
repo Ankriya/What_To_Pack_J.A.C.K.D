@@ -2,21 +2,32 @@ package student.projects.prog7312_poe_jackd
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Button
+import android.widget.ImageButton // Import ImageButton for the menu button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat // For opening/closing the drawer
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.drawerlayout.widget.DrawerLayout // Import DrawerLayout
+import com.google.android.material.navigation.NavigationView // Import NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
 
-class UserProfileActivity : AppCompatActivity() {
+// Implement NavigationView.OnNavigationItemSelectedListener
+class UserProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
+
+    // Navigation Drawer components
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var navView: NavigationView
+    private lateinit var menuButton: ImageButton // The custom hamburger icon
 
     private lateinit var profileAvatar: ImageView
     private lateinit var fullNameText: TextView
@@ -32,6 +43,19 @@ class UserProfileActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
+        // Initialize Nav Drawer components
+        drawerLayout = findViewById(R.id.drawer_layout)
+        navView = findViewById(R.id.nav_view)
+        menuButton = findViewById(R.id.menu_button)
+
+        // Set up Nav Drawer listener
+        navView.setNavigationItemSelectedListener(this)
+
+        // Set click listener for the custom ImageButton to open the drawer
+        menuButton.setOnClickListener {
+            drawerLayout.openDrawer(GravityCompat.START)
+        }
+
         profileAvatar = findViewById(R.id.profile_avatar)
         fullNameText = findViewById(R.id.fullname)
         emailText = findViewById(R.id.email)
@@ -43,6 +67,7 @@ class UserProfileActivity : AppCompatActivity() {
             startActivity(Intent(this, EditProfileActivity::class.java))
         }
 
+        // Apply Window Insets (kept for compatibility with your existing code)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -55,7 +80,38 @@ class UserProfileActivity : AppCompatActivity() {
         loadUserProfile()
     }
 
+    // New: Handle back press to close the drawer first
+    override fun onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
+    }
+
+    // New: Handle clicks on navigation drawer items
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        // Use an Intent to navigate to the corresponding Activity
+        when (item.itemId) {
+            R.id.my_search -> {
+                startActivity(Intent(this, MySearchActivity::class.java))
+            }
+            R.id.my_suitcase -> {
+                startActivity(Intent(this, MySuitcaseActivity::class.java))
+            }
+            R.id.my_profile -> {
+                // Already on UserProfileActivity, maybe just close drawer
+                Toast.makeText(this, "You are already here!", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // Close the drawer after navigation
+        drawerLayout.closeDrawer(GravityCompat.START)
+        return true
+    }
+
     private fun loadUserProfile() {
+        // ... (Your existing loadUserProfile function remains the same)
         val currentUser = auth.currentUser
 
         if (currentUser == null) {
