@@ -17,7 +17,7 @@
 
         <!-- Background -->
         <ImageView
-            android:id="@+id/background"
+            android:id="@+id/background1"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:scaleType="centerCrop"
@@ -56,6 +56,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
+        <ImageView
+            android:id="@+id/WeathLogo"
+            android:layout_width="169dp"
+            android:layout_height="101dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/WeatherTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/meteorology"/>
+
         <!-- City input -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/searchContainer"
@@ -63,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginHorizontal="24dp"
-            app:layout_constraintTop_toBottomOf="@id/WeatherTitle"
+            app:layout_constraintTop_toBottomOf="@id/WeathLogo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
@@ -90,6 +100,7 @@
                 android:hint="Enter city..."
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/WeathLogo"
                 android:inputType="textCapWords"
                 android:background="@null"
                 android:paddingStart="40dp"
@@ -104,16 +115,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Get Weather"
-            android:textSize="18sp"
-            app:backgroundTint="@color/pastelRed"
-            android:textColor="#FFFFFF"
+            android:backgroundTint="@color/pastelGreen"
+            android:textColor="@color/black"
             android:paddingHorizontal="32dp"
             android:paddingVertical="16dp"
-            android:layout_marginTop="12dp"
-            app:cornerRadius="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="230dp"
+            android:fontFamily="@font/tantangkiwood_display"
+            android:textSize="20sp"
             app:layout_constraintTop_toBottomOf="@id/searchContainer"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintStart_toStartOf="parent" />
+
+
 
         <!-- Current weather card -->
         <androidx.cardview.widget.CardView
@@ -185,6 +198,13 @@
                     android:textColor="#795548"
                     android:layout_marginTop="4dp"
                     android:gravity="center"/>
+
+                <ImageView
+                    android:id="@+id/background"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/blue_bg" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 

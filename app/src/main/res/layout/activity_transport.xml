@@ -55,11 +55,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
+        <ImageView
+            android:id="@+id/ResLogo"
+            android:layout_width="169dp"
+            android:layout_height="101dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/TransportTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/searchcar"/>
+
         <!-- Transport search layout -->
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@id/TransportTitle"
+            app:layout_constraintTop_toBottomOf="@id/ResLogo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -113,14 +123,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Find Nearby Transport"
-                    android:textSize="18sp"
-                    app:backgroundTint="@color/pastelRed"
-                    android:textColor="#FFFFFF"
+                    android:layout_marginLeft="130dp"
+                    android:backgroundTint="@color/pastelGreen"
+                    android:textColor="@color/black"
                     android:paddingHorizontal="32dp"
                     android:paddingVertical="16dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_gravity="center_horizontal"
-                    app:cornerRadius="16dp"/>
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/tantangkiwood_display"
+                    android:textSize="20sp"/>
 
                 <!-- RecyclerView -->
                 <androidx.recyclerview.widget.RecyclerView

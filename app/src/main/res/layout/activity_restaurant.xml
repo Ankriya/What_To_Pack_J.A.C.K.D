@@ -63,7 +63,14 @@
             app:layout_constraintTop_toBottomOf="@id/Restaurant"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/restaurant_logo"/>
+            app:srcCompat="@drawable/restaurantbuilding"/>
+
+        <TextView
+            android:id="@+id/Spacing"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            app:layout_constraintTop_toBottomOf="@id/ResLogo"
+            tools:ignore="MissingConstraints" />
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar_layout"
@@ -71,7 +78,7 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:elevation="0dp"
-            app:layout_constraintTop_toBottomOf="@id/ResLogo"
+            app:layout_constraintTop_toBottomOf="@id/Spacing"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
@@ -79,19 +86,20 @@
                 android:id="@+id/search_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:queryHint="Search location..."
                 android:layout_marginHorizontal="16dp"
+                android:background="@drawable/searchview_bg"
                 android:fontFamily="@font/tantangkiwood_display"
                 android:padding="8dp"
-                android:background="@drawable/searchview_bg"
+                android:queryHint="Search location..."
                 android:textColor="@color/black"
-                android:textColorHint="@color/black" />
+                android:textColorHint="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/ResLogo" />
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/restaurant_recycler_view"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             app:layout_constraintTop_toBottomOf="@id/app_bar_layout"
             app:layout_constraintBottom_toBottomOf="parent"
