@@ -1,31 +1,57 @@
+# File: .github/workflows/android_ci.yml
 name: Android CI
 
 on:
   push:
-    branches: [ master ]
+    # Trigger on push to the 'master' branch
+    branches: [ master ] 
   pull_request:
-    branches: [ master]
+    # Trigger on pull requests targeting the 'master' branch
+    branches: [ master ]
 
 jobs:
-  build:
+  build_and_test: 
 
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      # 1. Checkout code (Use latest version)
+      - name: Checkout code
+        uses: actions/checkout@v4 
 
-    - name: Set up JDK 11
-      uses: actions/setup-java@v3
-      with:
-        distribution: 'temurin'
-        java-version: 17
+      # 2. Setup Gradle Cache (Speeds up subsequent builds)
+      - name: Setup Gradle Cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: ${{ runner.os }}-gradle-
 
-    - name: Setup Android SDK
-      uses: android-actions/setup-android@v2
+      # 3. Set up JDK 17 (Fixes UnsupportedClassVersionError)
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4 # Updated to v4
+        with:
+          distribution: 'temurin'
+          java-version: '17' # Required version for recent Android tools
 
-    - name: Build project
-      run: ./gradlew build
+      # 4. FIX: Grant execute permission for gradlew (Fixes Permission denied error)
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
 
-    - name: Run unit tests
-      run: ./gradlew test
+      # 5. Setup Android SDK (Updated to v3)
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      # 6. Build project
+      - name: Build project
+        run: ./gradlew clean build
+
+      # 7. Run unit tests (JVM tests)
+      - name: Run Unit Tests
+        run: ./gradlew test
+
+      # 8. Run Lint (Code Quality Check)
+      - name: Run Lint checks
+        run: ./gradlew lint
