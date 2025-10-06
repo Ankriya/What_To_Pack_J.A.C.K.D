@@ -81,14 +81,11 @@
                 android:layout_height="wrap_content"
                 android:queryHint="Search location..."
                 android:layout_marginHorizontal="16dp"
-                android:backgroundTint="@android:color/white"
                 android:fontFamily="@font/tantangkiwood_display"
                 android:padding="8dp"
+                android:background="@drawable/searchview_bg"
                 android:textColor="@color/black"
-                android:textColorHint="@color/black"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="4dp" />
+                android:textColorHint="@color/black" />
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.recyclerview.widget.RecyclerView
