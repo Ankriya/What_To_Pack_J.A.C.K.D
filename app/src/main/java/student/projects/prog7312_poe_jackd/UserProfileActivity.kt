@@ -8,7 +8,6 @@ import android.widget.ImageButton // Import ImageButton for the menu button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat // For opening/closing the drawer
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -19,7 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
 
 // Implement NavigationView.OnNavigationItemSelectedListener
-class UserProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class UserProfileActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
@@ -36,9 +35,23 @@ class UserProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItem
     private lateinit var genderText: TextView
     private lateinit var editProfileBtn: Button
 
+    private lateinit var btnEnglish: Button
+    private lateinit var btnAfrikaans: Button
+    private lateinit var btnZulu: Button
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_profile)
+
+        btnEnglish = findViewById(R.id.btnEnglish)
+        btnAfrikaans = findViewById(R.id.btnAfrikaans)
+        btnZulu = findViewById(R.id.btnZulu)
+
+        btnEnglish.setOnClickListener { changeLanguage("en") }
+        btnAfrikaans.setOnClickListener { changeLanguage("af") }
+        btnZulu.setOnClickListener { changeLanguage("zu") }
+
 
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
@@ -141,10 +154,10 @@ class UserProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItem
                     val number = document.getString("phoneNumber") ?: "Not set"
                     val gender = document.getString("gender") ?: "Not set"
 
-                    fullNameText.text = "FULL NAME: $fullName"
-                    emailText.text = "EMAIL: $email"
-                    numberText.text = "NUMBER: $number"
-                    genderText.text = "GENDER: $gender"
+                    fullNameText.text = "${getString(R.string.FullName)} $fullName"
+                    emailText.text = "${getString(R.string.Email)} $email"
+                    numberText.text = "${getString(R.string.Number)} $number"
+                    genderText.text = "${getString(R.string.Gender)} $gender"
                 } else {
                     // No profile data exists, show default from Firebase Auth
                     fullNameText.text = "FULL NAME: ${currentUser.displayName ?: "Not set"}"
@@ -157,4 +170,10 @@ class UserProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItem
                 Toast.makeText(this, "Error loading profile: ${e.message}", Toast.LENGTH_SHORT).show()
             }
     }
+    private fun changeLanguage(languageCode: String) {
+        PreferenceManager.saveLanguage(this, languageCode)
+        LocaleHelper.setLocale(this, languageCode)
+        recreate() // refresh the activity UI immediately
+    }
+
 }

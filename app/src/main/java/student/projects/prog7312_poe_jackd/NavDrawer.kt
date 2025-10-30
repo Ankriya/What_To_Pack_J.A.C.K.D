@@ -3,11 +3,11 @@ package com.gfg.navigationdrawerkotlin
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import student.projects.prog7312_poe_jackd.R
+import student.projects.prog7312_poe_jackd.BaseActivity
 
-class NavDrawer : AppCompatActivity() {
+class NavDrawer : BaseActivity() {
     lateinit var drawerLayout: DrawerLayout
     lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
 

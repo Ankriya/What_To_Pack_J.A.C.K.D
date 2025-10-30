@@ -10,40 +10,132 @@
     <string name="nav_open">Open</string>
     <string name="nav_close">Close</string>
 
-    <string name="lorem_ipsum">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
-        volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
-        dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
-        litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend
-        diam, vel rutrum tellus vulputate quis. Aliquam eget libero aliquet, imperdiet nisl a,
-        ornare ex. Sed rhoncus est ut libero porta lobortis. Fusce in dictum tellus.\n\n
-        Suspendisse interdum ornare ante. Aliquam nec cursus lorem. Morbi id magna felis. Vivamus
-        egestas, est a condimentum egestas, turpis nisl iaculis ipsum, in dictum tellus dolor sed
-        neque. Morbi tellus erat, dapibus ut sem a, iaculis tincidunt dui. Interdum et malesuada
-        fames ac ante ipsum primis in faucibus. Curabitur et eros porttitor, ultricies urna vitae,
-        molestie nibh. Phasellus at commodo eros, non aliquet metus. Sed maximus nisl nec dolor
-        bibendum, vel congue leo egestas.\n\n
-        Sed interdum tortor nibh, in sagittis risus mollis quis. Curabitur mi odio, condimentum sit
-        amet auctor at, mollis non turpis. Nullam pretium libero vestibulum, finibus orci vel,
-        molestie quam. Fusce blandit tincidunt nulla, quis sollicitudin libero facilisis et. Integer
-        interdum nunc ligula, et fermentum metus hendrerit id. Vestibulum lectus felis, dictum at
-        lacinia sit amet, tristique id quam. Cras eu consequat dui. Suspendisse sodales nunc ligula,
-        in lobortis sem porta sed. Integer id ultrices magna, in luctus elit. Sed a pellentesque
-        est.\n\n
-        Aenean nunc velit, lacinia sed dolor sed, ultrices viverra nulla. Etiam a venenatis nibh.
-        Morbi laoreet, tortor sed facilisis varius, nibh orci rhoncus nulla, id elementum leo dui
-        non lorem. Nam mollis ipsum quis auctor varius. Quisque elementum eu libero sed commodo. In
-        eros nisl, imperdiet vel imperdiet et, scelerisque a mauris. Pellentesque varius ex nunc,
-        quis imperdiet eros placerat ac. Duis finibus orci et est auctor tincidunt. Sed non viverra
-        ipsum. Nunc quis augue egestas, cursus lorem at, molestie sem. Morbi a consectetur ipsum, a
-        placerat diam. Etiam vulputate dignissim convallis. Integer faucibus mauris sit amet finibus
-        convallis.\n\n
-        Phasellus in aliquet mi. Pellentesque habitant morbi tristique senectus et netus et
-        malesuada fames ac turpis egestas. In volutpat arcu ut felis sagittis, in finibus massa
-        gravida. Pellentesque id tellus orci. Integer dictum, lorem sed efficitur ullamcorper,
-        libero justo consectetur ipsum, in mollis nisl ex sed nisl. Donec maximus ullamcorper
-        sodales. Praesent bibendum rhoncus tellus nec feugiat. In a ornare nulla. Donec rhoncus
-        libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
-        vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
-    </string>
+
+    <!--    swipe page translations-->
+    <string name="swipe_right">SWIPE RIGHT</string>
+    <string name="choose_language">Choose a Language</string>
+
+    <!--    menu page translations-->
+    <string name="MENU">Menu</string>
+    <string name="MY">MY</string>
+    <string name="SEARCH">SEARCH</string>
+    <string name="MY_SUITCASE">MY SUITCASE</string>
+    <string name="MY_PROFILE">MY PROFILE</string>
+
+    <!--    Login page translations-->
+    <string name="Login">LOGIN</string>
+    <string name="SignInInstructions">SIGN IN WITH YOUR GOOGLE ACCOUNT</string>
+    <string name="GoogleLogin">LOGIN WITH GOOGLE</string>
+    <string name="NewAccountQ">DON\'T HAVE AN ACCOUNT?</string>
+    <string name="REGISTER">REGISTER</string>
+
+    <!--    register page translations -->
+    <string name="RegisterInstructions">CREATE AN ACCOUNT WITH YOUR GOOGLE ACCOUNT</string>
+    <string name="GoogleRegister">REGISTER WITH GOOGLE</string>
+    <string name="LoginRedirect">ALREADY HAVE AN ACCOUNT?</string>
+    <string name="Loginbtn">LOGIN HERE</string>
+
+    <!--    Create List Page translations-->
+    <string name="CreateListTitle">CREATE lIST</string>
+    <string name="LIST_TITLE">LIST TITLE:</string>
+    <string name="List_Hint">e.g., Groceries, Weekend Chores, etc.</string>
+    <string name="AddItem">ADD ITEM:</string>
+    <string name="ItemHint">Type new item here</string>
+    <string name="ADD">ADD</string>
+    <string name="CurrentList">CURRENT LIST:</string>
+
+    <!--    Currency Page Translations-->
+    <string name="CURRENCY">CURRENCY</string>
+    <string name="From">FROM:</string>
+    <string name="To">TO:</string>
+    <string name="CurrencyHint">ENTER CURRENCY</string>
+    <string name="Amount">AMOUNT:</string>
+    <string name="AmountHint">ENTER AMOUNT</string>
+    <string name="Submit">SUBMIT</string>
+    <string name="Converted">Converted Result:</string>
+
+    <!--    User Profile Page Translations-->
+    <string name="UserProfile">USER PROFILE</string>
+    <string name="FullName">FULL NAME:</string>
+    <string name="FullNameHint">ENTER FULL NAME</string>
+    <string name="Email">EMAIL:</string>
+    <string name="EmailHint">Enter EMAIL</string>
+    <string name="Number">NUMBER:</string>
+    <string name="NumberHint">ENTER PHONE NUMBER</string>
+    <string name="Gender">GENDER:</string>
+    <string name="GenderHint">ENTER GENDER</string>
+    <string name="Save">SAVE</string>
+    <string name="EditProfile">EDIT PROFILE</string>
+
+    <!--    Events Page Translations-->
+    <string name="Events">EVENTS</string>
+
+    <!--    My List Page Translations-->
+    <string name="MyList">MY LIST</string>
+    <string name="SearchListHint">Search for a list...</string>
+    <string name="NewList">NEW LIST</string>
+
+    <!--    My Search Page AND 2 Translations-->
+    <string name="MySearch">MY SEARCH</string>
+    <string name="Weather">WEATHER</string>
+    <string name="Restaurants">RESTAURANTS</string>
+    <string name="Transport">TRANSPORT</string>
+    <string name="CALENDAR">CALENDAR</string>
+
+    <!--    My Suitcase page Translations-->
+    <string name="TripDetails">TRIP DETAILS</string>
+
+    <!--    Password Reset Page Translations-->
+    <string name="PasswordReset">RESET PASSWORD</string>
+    <string name="PasswordResetHint">PLEASE ENTER YOUR EMAIL TO RESET PASSWORD.</string>
+    <string name="Back">Back</string>
+
+    <!--    Trip Details Page Translations-->
+    <string name="EnterLocation">ENTER LOCATION</string>
+    <string name="EnterDestination">ENTER DESTINATION</string>
+    <string name="Time">TIME:</string>
+    <string name="EnterTimeHint">ENTER Time:</string>
+    <string name="EnterLocation1">LOCATION (AIRPORT):</string>
+    <string name="EnterLocationHint">ENTER AIRPORT</string>
+    <string name="ViewTrips">VIEW TRIPS</string>
+    <string name="AIRPORT">AIRPORT:</string>
+
+    <!--    View List Details Page Translations-->
+    <string name="ViewListDetails">VIEW LIST DETAILS</string>
+    <string name="ListName">List Name:</string>
+    <string name="NewItem">New item</string>
+
+    <!--    Weather page Translations-->
+    <string name="EnterCityHint">Enter city...</string>
+    <string name="GetWeather">Get Weather</string>
+    <string name="Location1">Location</string>
+    <string name="Temperature">Temperature</string>
+    <string name="Humidity">Humidity</string>
+    <string name="WindSpeed">Wind Speed</string>
+    <string name="Wind">Wind</string>
+    <string name="Condition">Condition</string>
+    <string name="Date">Date</string>
+
+    <!--    Recycler View points Translations-->
+    <string name="ExampleItemText">Example List Item Text</string>
+
+    <string name="TransportName">Transport Name</string>
+    <string name="FindTransportBtn">Find Transport</string>
+    <string name="Address">Address</string>
+
+    <string name="VenueName">Venue Name:</string>
+    <string name="Location">LOCATION:</string>
+    <string name="TYPE">TYPE:</string>
+    <string name="TITLE">Title</string>
+    <string name="RestaurantName">RESTAURANT NAME:</string>
+    <string name="Style">STYLE:</string>
+    <string name="FlightTime">FLIGHT TIME:</string>
+
+
+
+    <!--     translatable="false" default language buttons-->
+    <string name="english" translatable="false">English</string>
+    <string name="afrikaans" translatable="false">Afrikaans</string>
+    <string name="zulu" translatable="false">IsiZulu</string>
+
 </resources>

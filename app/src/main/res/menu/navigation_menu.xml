@@ -6,16 +6,16 @@
     <item
         android:id="@+id/my_search"
         android:fontFamily="@font/tantangkiwood_display"
-        android:title="MY SEARCH" />
+        android:title="@string/MySearch" />
 
     <item
         android:id="@+id/my_suitcase"
         android:fontFamily="@font/tantangkiwood_display"
-        android:title="MY SUITCASE" />
+        android:title="@string/MY_SUITCASE" />
 
     <item
         android:id="@+id/my_profile"
         android:fontFamily="@font/tantangkiwood_display"
-        android:title="MY PROFILE" />
+        android:title="@string/MY_PROFILE" />
 
 </menu>

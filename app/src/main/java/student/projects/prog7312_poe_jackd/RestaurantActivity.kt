@@ -8,7 +8,6 @@ import android.view.MenuItem
 import android.widget.ImageButton
 import androidx.appcompat.widget.SearchView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -19,7 +18,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class RestaurantActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class RestaurantActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private val TAG = "RestaurantActivity"
 

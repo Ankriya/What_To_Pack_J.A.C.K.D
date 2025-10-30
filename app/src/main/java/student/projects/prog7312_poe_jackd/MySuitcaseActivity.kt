@@ -11,7 +11,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import android.widget.ImageButton
 
-class MySuitcaseActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MySuitcaseActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var drawerLayout: DrawerLayout
 

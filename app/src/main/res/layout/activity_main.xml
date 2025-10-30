@@ -42,6 +42,38 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/jacked_logo" />
 
+    <LinearLayout
+        android:id="@+id/language_buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/btnEnglish"
+            android:text="@string/english"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"/>
+
+        <Button
+            android:id="@+id/btnAfrikaans"
+            android:text="@string/afrikaans"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"/>
+
+        <Button
+            android:id="@+id/btnZulu"
+            android:text="@string/zulu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
     <ImageView
         android:id="@+id/arrow"
         android:layout_width="wrap_content"
@@ -57,7 +89,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="SWIPE RIGHT"
+        android:text="@string/swipe_right"
         android:textColor="@color/black"
         android:textSize="38sp"
         app:fontFamily="@font/tantangkiwood_display"

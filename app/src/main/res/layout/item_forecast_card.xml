@@ -18,7 +18,7 @@
             android:id="@+id/txtDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Date"
+            android:text="@string/Date"
             android:textStyle="bold"
             android:textSize="18sp"
             android:textColor="#333"/>
@@ -27,7 +27,7 @@
             android:id="@+id/txtTemp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Temperature"
+            android:text="@string/Temperature"
             android:textSize="16sp"
             android:textColor="#FF5722"
             android:layout_marginTop="4dp"/>
@@ -36,7 +36,7 @@
             android:id="@+id/txtHumidity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Humidity"
+            android:text="@string/Humidity"
             android:textSize="16sp"
             android:textColor="#2196F3"
             android:layout_marginTop="2dp"/>
@@ -45,7 +45,7 @@
             android:id="@+id/txtWind"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Wind"
+            android:text="@string/Wind"
             android:textSize="16sp"
             android:textColor="#009688"
             android:layout_marginTop="2dp"/>
@@ -54,7 +54,7 @@
             android:id="@+id/txtCondition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Condition"
+            android:text="@string/Condition"
             android:textSize="16sp"
             android:textColor="#795548"
             android:layout_marginTop="2dp"/>

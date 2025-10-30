@@ -1,0 +1,133 @@
+<resources>
+    <string name="app_name">PROG7312_POE_J.A.C.K.D</string>
+
+    <!-- Fragments -->
+    <string name="first_fragment_label">Ingxenye Yokuqala</string>
+    <string name="second_fragment_label">Ingxenye Yesibili</string>
+    <string name="next">Okulandelayo</string>
+    <string name="previous">Okwedlule</string>
+
+    <!-- Navigation Drawer -->
+    <string name="nav_open">Vula</string>
+    <string name="nav_close">Vala</string>
+
+    <!-- Swipe Page -->
+    <string name="swipe_right">SWAYIPA NGASEKUDLA</string>
+    <string name="choose_language">Khetha Ulimi</string>
+
+    <!-- Menu Page -->
+    <string name="MENU">IMENYU</string>
+    <string name="MY">OKWAMI</string>
+    <string name="SEARCH">FUNDA</string>
+    <string name="MY_SUITCASE">ISIKHEBHE SAKHO</string>
+    <string name="MY_PROFILE">IPROFAYILI YAMI</string>
+
+    <!-- Login Page -->
+    <string name="Login">NGENA</string>
+    <string name="SignInInstructions">NGENA NGESIBONELO SAKHO SE-GOOGLE</string>
+    <string name="GoogleLogin">NGENA NGA-GOOGLE</string>
+    <string name="NewAccountQ">AWUNASIBONELO?</string>
+    <string name="REGISTER">BHALISA</string>
+
+    <!-- Register Page -->
+    <string name="RegisterInstructions">DALA I-AKHAUNTI NGESIBONELO SAKHO SE-GOOGLE</string>
+    <string name="GoogleRegister">BHALISA NGA-GOOGLE</string>
+    <string name="LoginRedirect">UNE-AKHAUNTI?</string>
+    <string name="Loginbtn">NGENA LAPHA</string>
+
+    <!-- Create List Page -->
+    <string name="CreateListTitle">DALA UHLOBO</string>
+    <string name="LIST_TITLE">ISIHLOKO SOHLOBO:</string>
+    <string name="List_Hint">isb., Izitolo, Imisebenzi Yempelasonto, njll.</string>
+    <string name="AddItem">ENEZA INTO:</string>
+    <string name="ItemHint">Bhala into entsha lapha</string>
+    <string name="ADD">ENEZA</string>
+    <string name="CurrentList">UHLOBO LWAMANJE:</string>
+
+    <!-- Currency Page -->
+    <string name="CURRENCY">IMALI</string>
+    <string name="From">OKUSUKA KU:</string>
+    <string name="To">OKUYA KU:</string>
+    <string name="CurrencyHint">FUNDA IMALI</string>
+    <string name="Amount">ISAMALI:</string>
+    <string name="AmountHint">FUNDA ISAMALI</string>
+    <string name="Submit">THUMELA</string>
+    <string name="Converted">Umphumela Oguquliwe:</string>
+
+    <!-- User Profile Page -->
+    <string name="UserProfile">IPROFAYILI YOMSEBENZI</string>
+    <string name="FullName">IGAMA ELIPHELELE:</string>
+    <string name="FullNameHint">Faka igama eliphelele</string>
+    <string name="Email">IMEYILI:</string>
+    <string name="EmailHint">Faka imeyili</string>
+    <string name="Number">INOMBOLO:</string>
+    <string name="NumberHint">Faka inombolo yocingo</string>
+    <string name="Gender">UBULILI:</string>
+    <string name="GenderHint">Faka ubulili</string>
+    <string name="Save">GCINA</string>
+    <string name="EditProfile">HLELA IPROFAYILI</string>
+
+    <!-- Events Page -->
+    <string name="Events">IMICIMBI</string>
+
+    <!-- My List Page -->
+    <string name="MyList">UHLOBO LWAMI</string>
+    <string name="SearchListHint">Funa uhlu...</string>
+    <string name="NewList">UHLOBO OLUSHA</string>
+
+    <!-- My Search Page -->
+    <string name="MySearch">UKUFINDA KWAMI</string>
+    <string name="Weather">ISIMO SEZULU</string>
+    <string name="Restaurants">IZINDAWO ZOKUDLA</string>
+    <string name="Transport">EZOKUTHUTHA</string>
+    <string name="CALENDAR">IKHALENDA</string>
+
+    <!-- My Suitcase Page -->
+    <string name="TripDetails">IMINININGWANE YOHAMBO</string>
+
+    <!-- Password Reset Page -->
+    <string name="PasswordReset">SETHA KABUSHA I-PHASIWEDI</string>
+    <string name="PasswordResetHint">SICELA UFake IMEYILI UKUZE USETHE KABUSHA I-PHASIWEDI.</string>
+    <string name="Back">Emuva</string>
+
+    <!-- Trip Details Page -->
+    <string name="EnterLocation">FAKA INDAWO</string>
+    <string name="EnterDestination">FAKA INDAWO OYA KUYO</string>
+    <string name="Time">ISIKHATHI:</string>
+    <string name="EnterTimeHint">FAKA ISIKHATHI:</string>
+    <string name="EnterLocation1">INDAWO (ISIKHUMBUZO):</string>
+    <string name="EnterLocationHint">FAKA ISIKHUMBUZO</string>
+    <string name="ViewTrips">BUKA UHAMBO</string>
+    <string name="AIRPORT">ISIKHUMBUZO:</string>
+
+    <!-- View List Details -->
+    <string name="ViewListDetails">BUKA IMINININGWANE YOHLOBO</string>
+    <string name="ListName">Igama Lohlu:</string>
+    <string name="NewItem">Into entsha</string>
+
+    <!-- Weather Page -->
+    <string name="EnterCityHint">Faka idolobha...</string>
+    <string name="GetWeather">Thola Isimo Sezulu</string>
+    <string name="Location1">Indawo</string>
+    <string name="Temperature">Izinga Lokushisa</string>
+    <string name="Humidity">Umswakama</string>
+    <string name="WindSpeed">Ijubane Lomoya</string>
+    <string name="Wind">Umoya</string>
+    <string name="Condition">Isimo</string>
+    <string name="Date">Usuku</string>
+
+    <!-- Recycler View -->
+    <string name="ExampleItemText">Umbhalo Wento Yohlobo Isibonelo</string>
+
+    <string name="TransportName">Igama Lezokuthutha</string>
+    <string name="FindTransportBtn">Thola Ezokuthutha</string>
+    <string name="Address">Ikheli</string>
+
+    <string name="VenueName">Igama Lendawo:</string>
+    <string name="Location">INDAWO:</string>
+    <string name="TYPE">UHLOBO:</string>
+    <string name="TITLE">Isihloko</string>
+    <string name="RestaurantName">IGAMA LENDLELA YOKUDLA:</string>
+    <string name="Style">ISITAYELA:</string>
+    <string name="FlightTime">ISIKHATHI SENDIZA:</string>
+</resources>

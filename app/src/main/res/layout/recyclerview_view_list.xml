@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:fontFamily="@font/tantangkiwood_display"
-                android:text="LOCATION:" />
+                android:text="@string/Location" />
 
             <TextView
                 android:id="@+id/FromTxt"
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:fontFamily="@font/tantangkiwood_display"
-                android:text="FROM:" />
+                android:text="@string/From" />
 
             <TextView
                 android:id="@+id/ToTxt"
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:fontFamily="@font/tantangkiwood_display"
-                android:text="TO:" />
+                android:text="@string/To" />
 
             <TextView
                 android:id="@+id/FlightTimeTxt"
@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:fontFamily="@font/tantangkiwood_display"
-                android:text="FLIGHT TIME:" />
+                android:text="@string/FlightTime" />
 
 
         </LinearLayout>

@@ -8,7 +8,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -20,7 +19,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
-class ViewListDetailsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class ViewListDetailsActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var db: FirebaseFirestore
     private lateinit var recyclerView: RecyclerView

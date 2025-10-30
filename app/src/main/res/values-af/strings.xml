@@ -1,0 +1,133 @@
+<resources>
+    <string name="app_name">PROG7312_POE_J.A.C.K.D</string>
+
+    <!-- Fragments -->
+    <string name="first_fragment_label">Eerste Fragment</string>
+    <string name="second_fragment_label">Tweede Fragment</string>
+    <string name="next">Volgende</string>
+    <string name="previous">Vorige</string>
+
+    <!-- Navigation Drawer -->
+    <string name="nav_open">Maak oop</string>
+    <string name="nav_close">Maak toe</string>
+
+    <!-- Swipe Page -->
+    <string name="swipe_right">SWIEP REGS</string>
+    <string name="choose_language">Kies ’n Taal</string>
+
+    <!-- Menu Page -->
+    <string name="MENU">KIESLYS</string>
+    <string name="MY">MY</string>
+    <string name="SEARCH">SOEK</string>
+    <string name="MY_SUITCASE">MY KOFFER</string>
+    <string name="MY_PROFILE">MY PROFIEL</string>
+
+    <!-- Login Page -->
+    <string name="Login">MELD AAN</string>
+    <string name="SignInInstructions">MELD AAN MET JOU GOOGLE-REKENING</string>
+    <string name="GoogleLogin">MELD AAN MET GOOGLE</string>
+    <string name="NewAccountQ">HET JY NIE ’N REKENING NIE?</string>
+    <string name="REGISTER">REGISTREER</string>
+
+    <!-- Register Page -->
+    <string name="RegisterInstructions">SKEP ’N REKENING MET JOU GOOGLE-REKENING</string>
+    <string name="GoogleRegister">REGISTREER MET GOOGLE</string>
+    <string name="LoginRedirect">HET JY REEDS ’N REKENING?</string>
+    <string name="Loginbtn">MELD HIER AAN</string>
+
+    <!-- Create List Page -->
+    <string name="CreateListTitle">SKAAP LYS</string>
+    <string name="LIST_TITLE">LYS TITEL:</string>
+    <string name="List_Hint">bv. Boodskappe, Naweektake, ens.</string>
+    <string name="AddItem">VOEG ITEM BY:</string>
+    <string name="ItemHint">Tik nuwe item hier</string>
+    <string name="ADD">VOEG BY</string>
+    <string name="CurrentList">HUIDIGE LYS:</string>
+
+    <!-- Currency Page -->
+    <string name="CURRENCY">GELDEENHEID</string>
+    <string name="From">VAN:</string>
+    <string name="To">NA:</string>
+    <string name="CurrencyHint">VOER GELDEENHEID IN</string>
+    <string name="Amount">BEDRAG:</string>
+    <string name="AmountHint">VOER BEDRAG IN</string>
+    <string name="Submit">DIEN IN</string>
+    <string name="Converted">Omgeskakelde Resultaat:</string>
+
+    <!-- User Profile Page -->
+    <string name="UserProfile">GEBRUIKERSPROFIEL</string>
+    <string name="FullName">VOLLE NAAM:</string>
+    <string name="FullNameHint">VOER VOLLE NAAM IN</string>
+    <string name="Email">E-POS:</string>
+    <string name="EmailHint">Voer e-pos in</string>
+    <string name="Number">NOMMER:</string>
+    <string name="NumberHint">VOER TELEFOONNOMMER IN</string>
+    <string name="Gender">GESLAG:</string>
+    <string name="GenderHint">VOER GESLAG IN</string>
+    <string name="Save">STOOR</string>
+    <string name="EditProfile">WYSIG PROFIEL</string>
+
+    <!-- Events Page -->
+    <string name="Events">GEBEURE</string>
+
+    <!-- My List Page -->
+    <string name="MyList">MY LYS</string>
+    <string name="SearchListHint">Soek vir ’n lys...</string>
+    <string name="NewList">NUWE LYS</string>
+
+    <!-- My Search Page -->
+    <string name="MySearch">MY SOEK</string>
+    <string name="Weather">WEER</string>
+    <string name="Restaurants">RESTAURANTE</string>
+    <string name="Transport">VERVOER</string>
+    <string name="CALENDAR">KALENDER</string>
+
+    <!-- My Suitcase Page -->
+    <string name="TripDetails">REISBESONDERHEDE</string>
+
+    <!-- Password Reset Page -->
+    <string name="PasswordReset">HERSTEL WAGWOORD</string>
+    <string name="PasswordResetHint">VOER ASSEBLIEF JOU E-POS IN OM WAGWOORD TE HERSTEL.</string>
+    <string name="Back">Terug</string>
+
+    <!-- Trip Details Page -->
+    <string name="EnterLocation">VOER LIGGING IN</string>
+    <string name="EnterDestination">VOER BESTEMMING IN</string>
+    <string name="Time">TYD:</string>
+    <string name="EnterTimeHint">VOER TYD IN:</string>
+    <string name="EnterLocation1">LIGGING (LUGHAWE):</string>
+    <string name="EnterLocationHint">VOER LUGHAWE IN</string>
+    <string name="ViewTrips">BESIG REISE</string>
+    <string name="AIRPORT">LUGHAWE:</string>
+
+    <!-- View List Details -->
+    <string name="ViewListDetails">BESIG LYSBESONDERHEDE</string>
+    <string name="ListName">Lys Naam:</string>
+    <string name="NewItem">Nuwe item</string>
+
+    <!-- Weather Page -->
+    <string name="EnterCityHint">Voer stad in...</string>
+    <string name="GetWeather">Kry Weer</string>
+    <string name="Location1">Ligging</string>
+    <string name="Temperature">Temperatuur</string>
+    <string name="Humidity">Humiditeit</string>
+    <string name="WindSpeed">Windsnelheid</string>
+    <string name="Wind">Wind</string>
+    <string name="Condition">Toestand</string>
+    <string name="Date">Datum</string>
+
+    <!-- Recycler View -->
+    <string name="ExampleItemText">Voorbeeld Lysitem Teks</string>
+
+    <string name="TransportName">Vervoernaam</string>
+    <string name="FindTransportBtn">Soek vervoer</string>
+    <string name="Address">Adres</string>
+
+    <string name="VenueName">Lokaal Naam:</string>
+    <string name="Location">LIGGING:</string>
+    <string name="TYPE">TIPE:</string>
+    <string name="TITLE">Titel</string>
+    <string name="RestaurantName">RESTAURANT NAAM:</string>
+    <string name="Style">STYL:</string>
+    <string name="FlightTime">VLUGTYD:</string>
+</resources>

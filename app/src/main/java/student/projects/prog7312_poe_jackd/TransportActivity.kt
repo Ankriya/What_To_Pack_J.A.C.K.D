@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -21,7 +20,7 @@ import org.json.JSONObject
 import java.net.URL
 import android.widget.ImageButton
 
-class TransportActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class TransportActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var recyclerView: RecyclerView

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -12,8 +13,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.gfg.navigationdrawerkotlin.NavDrawer
 import kotlin.math.abs // Ensure this is imported
+import student.projects.prog7312_poe_jackd.LocaleHelper
+import student.projects.prog7312_poe_jackd.PreferenceManager
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private val TAG = "MainActivitySwipe"
 
@@ -23,6 +26,12 @@ class MainActivity : AppCompatActivity() {
     // Minimum distance in pixels for detecting a horizontal swipe
     private val MIN_DISTANCE = 150
 
+    override fun attachBaseContext(newBase: android.content.Context) {
+        val lang = PreferenceManager.getLanguage(newBase)
+        val context = LocaleHelper.setLocale(newBase, lang)
+        super.attachBaseContext(context)
+    }
+
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +39,13 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
 
         val mainLayout = findViewById<ConstraintLayout>(R.id.main)
+        val btnEnglish = findViewById<Button>(R.id.btnEnglish)
+        val btnAfrikaans = findViewById<Button>(R.id.btnAfrikaans)
+        val btnZulu = findViewById<Button>(R.id.btnZulu)
+
+        btnEnglish.setOnClickListener { changeLanguage("en") }
+        btnAfrikaans.setOnClickListener { changeLanguage("af") }
+        btnZulu.setOnClickListener { changeLanguage("zu") }
 
         // It is CRITICAL that the main container is set to be clickable/touchable
         // so that it receives the MotionEvent.ACTION_DOWN first.
@@ -81,5 +97,10 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
+    private fun changeLanguage(languageCode: String) {
+        PreferenceManager.saveLanguage(this, languageCode)
+        LocaleHelper.setLocale(this, languageCode)
+        recreate() // Refresh UI text instantly
     }
 }

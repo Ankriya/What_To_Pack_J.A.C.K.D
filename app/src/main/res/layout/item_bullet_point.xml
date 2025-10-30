@@ -27,7 +27,7 @@
         android:textSize="18sp"
         android:textColor="@color/black"
         android:fontFamily="@font/tantangkiwood_display"
-        android:text="Example List Item Text" />
+        android:text="@string/ExampleItemText" />
 
     <!-- Edit Button -->
     <ImageButton
