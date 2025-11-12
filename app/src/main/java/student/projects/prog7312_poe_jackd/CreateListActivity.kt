@@ -30,7 +30,6 @@ class CreateListActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
     private lateinit var saveListBtn: Button
     private lateinit var titleInput: EditText
 
-    // Drawer variables
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
     private lateinit var menuButton: ImageButton
@@ -40,11 +39,9 @@ class CreateListActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         enableEdgeToEdge()
         setContentView(R.layout.activity_create_list)
 
-        // Firebase
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
-        // Views
         titleInput = findViewById(R.id.ListTitleInput)
         newItemInput = findViewById(R.id.NewItemInput)
         addItemBtn = findViewById(R.id.AddItemBtn)
@@ -62,14 +59,12 @@ class CreateListActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
             startActivity(Intent(this, MyListActivity::class.java))
         }
 
-        // Edge-to-edge padding
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        // --- Drawer setup ---
         drawerLayout = findViewById(R.id.drawer_layout)
         navView = findViewById(R.id.nav_view)
         menuButton = findViewById(R.id.menu_button)
@@ -125,6 +120,12 @@ class CreateListActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         userListsRef.set(newList)
             .addOnSuccessListener {
                 Toast.makeText(this, "List saved successfully!", Toast.LENGTH_SHORT).show()
+                NotificationHelper.showNotification(
+                    this,
+                    "List Created",
+                    "Successfully created list: $title",
+                    NotificationSettingsActivity.KEY_LIST_NOTIFICATIONS
+                )
                 itemsList.clear()
                 adapter.notifyDataSetChanged()
                 titleInput.text.clear()
@@ -134,12 +135,12 @@ class CreateListActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
             }
     }
 
-    // --- Navigation Drawer Methods ---
     override fun onNavigationItemSelected(item: android.view.MenuItem): Boolean {
         when (item.itemId) {
             R.id.my_search -> startActivity(Intent(this, MySearchActivity::class.java))
             R.id.my_suitcase -> startActivity(Intent(this, MySuitcaseActivity::class.java))
             R.id.my_profile -> startActivity(Intent(this, UserProfileActivity::class.java))
+            R.id.my_settings -> startActivity(Intent(this, NotificationSettingsActivity::class.java))
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true

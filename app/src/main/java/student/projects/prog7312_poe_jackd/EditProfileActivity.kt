@@ -34,11 +34,9 @@ class EditProfileActivity : BaseActivity(), NavigationView.OnNavigationItemSelec
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
 
-        // Firebase setup
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
-        // Views
         profileIcon = findViewById(R.id.Icon)
         fullNameInput = findViewById(R.id.FullNameInput)
         emailInput = findViewById(R.id.EmailInput)
@@ -46,25 +44,20 @@ class EditProfileActivity : BaseActivity(), NavigationView.OnNavigationItemSelec
         genderInput = findViewById(R.id.GenderInput)
         saveBtn = findViewById(R.id.SaveBtn)
 
-        // Drawer setup
         drawerLayout = findViewById(R.id.drawer_layout)
         val navigationView: NavigationView = findViewById(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener(this)
 
-        // Hamburger menu button
         findViewById<ImageButton>(R.id.menu_button).setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
         }
 
-        // Load profile
         loadCurrentProfile()
 
-        // Save profile button
         saveBtn.setOnClickListener {
             saveProfile()
         }
 
-        // Handle window insets for notch/status bars
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -81,7 +74,6 @@ class EditProfileActivity : BaseActivity(), NavigationView.OnNavigationItemSelec
             return
         }
 
-        // Load profile photo
         currentUser.photoUrl?.let { photoUrl ->
             Picasso.get()
                 .load(photoUrl)
@@ -89,7 +81,6 @@ class EditProfileActivity : BaseActivity(), NavigationView.OnNavigationItemSelec
                 .into(profileIcon)
         }
 
-        // Load existing profile data
         db.collection("users")
             .document(currentUser.uid)
             .collection("profile")
@@ -145,6 +136,12 @@ class EditProfileActivity : BaseActivity(), NavigationView.OnNavigationItemSelec
             .set(profileData)
             .addOnSuccessListener {
                 Toast.makeText(this, "Profile saved successfully!", Toast.LENGTH_SHORT).show()
+                NotificationHelper.showNotification(
+                    this,
+                    "Profile Updated",
+                    "Your profile has been updated successfully",
+                    NotificationSettingsActivity.KEY_PROFILE_NOTIFICATIONS
+                )
                 finish()
             }
             .addOnFailureListener { e ->
@@ -152,12 +149,12 @@ class EditProfileActivity : BaseActivity(), NavigationView.OnNavigationItemSelec
             }
     }
 
-    // Drawer navigation
     override fun onNavigationItemSelected(item: android.view.MenuItem): Boolean {
         when (item.itemId) {
             R.id.my_search -> startActivity(Intent(this, MySearchActivity::class.java))
             R.id.my_suitcase -> startActivity(Intent(this, MySuitcaseActivity::class.java))
             R.id.my_profile -> startActivity(Intent(this, UserProfileActivity::class.java))
+            R.id.my_settings -> startActivity(Intent(this, NotificationSettingsActivity::class.java))
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true

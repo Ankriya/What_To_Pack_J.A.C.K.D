@@ -107,6 +107,7 @@ class ViewTripsActivity : BaseActivity(), NavigationView.OnNavigationItemSelecte
             R.id.my_search -> startActivity(Intent(this, MySearchActivity::class.java))
             R.id.my_suitcase -> startActivity(Intent(this, MySuitcaseActivity::class.java))
             R.id.my_profile -> startActivity(Intent(this, UserProfileActivity::class.java))
+            R.id.my_settings -> startActivity(Intent(this, NotificationSettingsActivity::class.java))
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true

@@ -2,7 +2,6 @@ package student.projects.prog7312_poe_jackd
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
@@ -40,12 +39,10 @@ class TripDetailsActivity : BaseActivity(), NavigationView.OnNavigationItemSelec
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
-        // Drawer setup
         drawerLayout = findViewById(R.id.drawer_layout)
         val navigationView: NavigationView = findViewById(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener(this)
 
-        // Hamburger menu button
         findViewById<ImageButton>(R.id.menu_button).setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
         }
@@ -55,7 +52,6 @@ class TripDetailsActivity : BaseActivity(), NavigationView.OnNavigationItemSelec
         timeInput = findViewById(R.id.TimeInput)
         airportInput = findViewById(R.id.AirportInput)
 
-        // Load countries from API
         loadCountries()
 
         findViewById<Button>(R.id.SubmitBtn).setOnClickListener {
@@ -131,6 +127,12 @@ class TripDetailsActivity : BaseActivity(), NavigationView.OnNavigationItemSelec
             .add(tripData)
             .addOnSuccessListener {
                 Toast.makeText(this, "Trip saved successfully!", Toast.LENGTH_SHORT).show()
+                NotificationHelper.showNotification(
+                    this,
+                    "Trip Saved",
+                    "Trip from $from to $to has been saved",
+                    NotificationSettingsActivity.KEY_TRIP_NOTIFICATIONS
+                )
                 fromInput.text.clear()
                 toInput.text.clear()
                 timeInput.text.clear()
@@ -146,6 +148,7 @@ class TripDetailsActivity : BaseActivity(), NavigationView.OnNavigationItemSelec
             R.id.my_search -> startActivity(Intent(this, MySearchActivity::class.java))
             R.id.my_suitcase -> startActivity(Intent(this, MySuitcaseActivity::class.java))
             R.id.my_profile -> startActivity(Intent(this, UserProfileActivity::class.java))
+            R.id.my_settings -> startActivity(Intent(this, NotificationSettingsActivity::class.java))
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true

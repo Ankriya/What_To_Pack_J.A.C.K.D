@@ -109,12 +109,18 @@ class UserProfileActivity : BaseActivity(), NavigationView.OnNavigationItemSelec
             R.id.my_search -> {
                 startActivity(Intent(this, MySearchActivity::class.java))
             }
+
             R.id.my_suitcase -> {
                 startActivity(Intent(this, MySuitcaseActivity::class.java))
             }
+
             R.id.my_profile -> {
                 // Already on UserProfileActivity, maybe just close drawer
                 Toast.makeText(this, "You are already here!", Toast.LENGTH_SHORT).show()
+            }
+
+            R.id.my_settings -> {
+                startActivity(Intent(this, NotificationSettingsActivity::class.java))
             }
         }
 

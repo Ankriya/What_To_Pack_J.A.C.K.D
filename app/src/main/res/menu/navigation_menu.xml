@@ -18,4 +18,9 @@
         android:fontFamily="@font/tantangkiwood_display"
         android:title="@string/MY_PROFILE" />
 
+    <item
+        android:id="@+id/my_settings"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:title="Settings" />
+
 </menu>

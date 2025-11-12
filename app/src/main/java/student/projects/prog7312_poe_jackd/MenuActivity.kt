@@ -49,6 +49,9 @@ class MenuActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             R.id.my_profile -> {
                 startActivity(Intent(this, UserProfileActivity::class.java))
             }
+            R.id.my_settings -> {
+                startActivity(Intent(this, NotificationSettingsActivity::class.java))
+            }
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
