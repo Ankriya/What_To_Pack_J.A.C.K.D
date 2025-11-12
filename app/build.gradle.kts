@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("kotlin-kapt")
     id("com.google.gms.google-services")
 }
 
@@ -81,4 +82,12 @@ dependencies {
     testImplementation("org.mockito:mockito-inline:5.2.0")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+    //Room Dependencies
+    implementation("androidx.room:room-runtime:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1") // Kotlin Extensions & Coroutines support
+    kapt("androidx.room:room-compiler:2.6.1") // Annotation processor
+
+    // Coroutines Dependency
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
 }

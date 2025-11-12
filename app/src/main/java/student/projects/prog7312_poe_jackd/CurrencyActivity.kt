@@ -1,6 +1,10 @@
 package student.projects.prog7312_poe_jackd
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
@@ -15,6 +19,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,12 +34,34 @@ class CurrencyActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
     private lateinit var amountInput: EditText
     private lateinit var resultDisplay: TextView
 
-    private var countries = listOf<Country>()
+    // Repository instance to access data (API or Room)
+    private lateinit var currencyRepository: CurrencyRepository
+
+    // List now holds the cached entity objects
+    private var countryEntities = listOf<CountryCurrencyEntity>()
 
     // Drawer variables
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
     private lateinit var menuButton: ImageButton
+
+    // Helper function for connectivity check (moved here for simplicity without a full ViewModel)
+    private fun isOnline(context: Context): Boolean {
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val network = connectivityManager.activeNetwork ?: return false
+            val capabilities = connectivityManager.getNetworkCapabilities(network) ?: return false
+            return capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)
+        } else {
+            @Suppress("DEPRECATION")
+            val networkInfo = connectivityManager.activeNetworkInfo ?: return false
+            @Suppress("DEPRECATION")
+            return networkInfo.isConnected
+        }
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,21 +73,25 @@ class CurrencyActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
         amountInput = findViewById(R.id.AmountInput)
         resultDisplay = findViewById(R.id.ResultDisplay)
 
-        // Load countries for currency codes
+        // Repository Initialization
+        val apiService = RetrofitClient.instance
+        val currencyDao = CurrencyDatabase.getDatabase(applicationContext).countryCurrencyDao()
+        currencyRepository = CurrencyRepository(apiService, currencyDao, applicationContext)
+
+        // Load countries using the Repository logic
         loadCountries()
 
         findViewById<Button>(R.id.SubmitBtn).setOnClickListener {
             convertCurrency()
         }
 
-        // Edge-to-edge padding
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        // --- Drawer setup ---
+        // Drawer setup
         drawerLayout = findViewById(R.id.drawer_layout)
         navView = findViewById(R.id.nav_view)
         menuButton = findViewById(R.id.menu_button)
@@ -69,25 +103,39 @@ class CurrencyActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
         navView.setNavigationItemSelectedListener(this)
     }
 
+    // Uses Coroutines and the Repository for offline-first data fetching
     private fun loadCountries() {
-        RetrofitClient.instance.getCountries().enqueue(object : Callback<List<Country>> {
-            override fun onResponse(call: Call<List<Country>>, response: Response<List<Country>>) {
-                if (response.isSuccessful) {
-                    countries = response.body() ?: emptyList()
+        // Launch a coroutine on the IO dispatcher for network/DB operations
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                // The Repository handles the logic: try API, fall back to Room
+                val entities = currencyRepository.getCountryCurrencies()
+
+                // Switch back to the Main thread to update the UI
+                withContext(Dispatchers.Main) {
+                    countryEntities = entities
                     setupCurrencyDropdowns()
-                } else {
-                    Toast.makeText(this@CurrencyActivity, "Failed to load currencies", Toast.LENGTH_SHORT).show()
+
+                    // User Feedback based on state
+                    if (entities.isEmpty()) {
+                        Toast.makeText(this@CurrencyActivity, "No internet and no cached currencies available.", Toast.LENGTH_LONG).show()
+                    } else if (!isOnline(applicationContext) && countryEntities.isNotEmpty()) {
+                        Toast.makeText(this@CurrencyActivity, "Offline mode: Displaying cached currencies.", Toast.LENGTH_LONG).show()
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                // Handle critical errors (e.g., first run and no network)
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(this@CurrencyActivity, "Failed to load currencies: ${e.message}", Toast.LENGTH_LONG).show()
                 }
             }
-
-            override fun onFailure(call: Call<List<Country>>, t: Throwable) {
-                Toast.makeText(this@CurrencyActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
-            }
-        })
+        }
     }
 
+    // Uses the CountryCurrencyEntity list
     private fun setupCurrencyDropdowns() {
-        val currencies = countries.map { "${it.currency} (${it.name})" }
+        val currencies = countryEntities.map { "${it.currencyCode} (${it.countryName})" }
 
         val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, currencies)
 
@@ -99,7 +147,7 @@ class CurrencyActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
     }
 
     private fun convertCurrency() {
-        val fromCurrency = fromInput.text.toString().trim().split(" ")[0] // Extract currency code
+        val fromCurrency = fromInput.text.toString().trim().split(" ")[0]
         val toCurrency = toInput.text.toString().trim().split(" ")[0]
         val amount = amountInput.text.toString().trim()
 
@@ -122,7 +170,6 @@ class CurrencyActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
                         result?.let {
                             resultDisplay.text = "Converted Result: ${it.result} ${it.to}"
                         }
-
                     } else {
                         Toast.makeText(this@CurrencyActivity, "Conversion failed", Toast.LENGTH_SHORT).show()
                     }
@@ -134,7 +181,7 @@ class CurrencyActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
             })
     }
 
-    // --- Navigation Drawer Methods ---
+    // Navigation Drawer Methods
     override fun onNavigationItemSelected(item: android.view.MenuItem): Boolean {
         when (item.itemId) {
             R.id.my_search -> startActivity(Intent(this, MySearchActivity::class.java))

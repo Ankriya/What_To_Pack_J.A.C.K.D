@@ -1,6 +1,10 @@
 package student.projects.prog7312_poe_jackd
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
@@ -8,6 +12,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -15,14 +20,16 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class TripDetailsActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
+    private lateinit var currencyRepository: CurrencyRepository // Repository instance
 
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var fromInput: AutoCompleteTextView
@@ -30,7 +37,24 @@ class TripDetailsActivity : BaseActivity(), NavigationView.OnNavigationItemSelec
     private lateinit var timeInput: EditText
     private lateinit var airportInput: EditText
 
-    private var countries = listOf<Country>()
+    private var countryEntities = listOf<CountryCurrencyEntity>() // List now uses the Room entity
+
+    // Helper function for connectivity check (needed for the Toast feedback)
+    private fun isOnline(context: Context): Boolean {
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val network = connectivityManager.activeNetwork ?: return false
+            val capabilities = connectivityManager.getNetworkCapabilities(network) ?: return false
+            return capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)
+        } else {
+            @Suppress("DEPRECATION")
+            val networkInfo = connectivityManager.activeNetworkInfo ?: return false
+            @Suppress("DEPRECATION")
+            return networkInfo.isConnected
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +62,11 @@ class TripDetailsActivity : BaseActivity(), NavigationView.OnNavigationItemSelec
 
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
+
+        // Repository Initialization
+        val apiService = RetrofitClient.instance
+        val currencyDao = CurrencyDatabase.getDatabase(applicationContext).countryCurrencyDao()
+        currencyRepository = CurrencyRepository(apiService, currencyDao, applicationContext)
 
         drawerLayout = findViewById(R.id.drawer_layout)
         val navigationView: NavigationView = findViewById(R.id.nav_view)
@@ -69,26 +98,36 @@ class TripDetailsActivity : BaseActivity(), NavigationView.OnNavigationItemSelec
         }
     }
 
+    //Uses Coroutines and the Repository for offline-first data fetching
     private fun loadCountries() {
-        RetrofitClient.instance.getCountries().enqueue(object : Callback<List<Country>> {
-            override fun onResponse(call: Call<List<Country>>, response: Response<List<Country>>) {
-                if (response.isSuccessful) {
-                    countries = response.body() ?: emptyList()
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val entities = currencyRepository.getCountryCurrencies()
+
+                withContext(Dispatchers.Main) {
+                    countryEntities = entities
                     setupCountryDropdowns()
-                } else {
-                    Toast.makeText(this@TripDetailsActivity, "Failed to load countries", Toast.LENGTH_SHORT).show()
+
+                    if (entities.isEmpty()) {
+                        Toast.makeText(this@TripDetailsActivity, "No internet and no cached countries available.", Toast.LENGTH_LONG).show()
+                    } else if (!isOnline(applicationContext) && countryEntities.isNotEmpty()) {
+                        Toast.makeText(this@TripDetailsActivity, "Offline mode: Displaying cached countries.", Toast.LENGTH_LONG).show()
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(this@TripDetailsActivity, "Failed to load countries: ${e.message}", Toast.LENGTH_LONG).show()
                 }
             }
-
-            override fun onFailure(call: Call<List<Country>>, t: Throwable) {
-                Toast.makeText(this@TripDetailsActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
-            }
-        })
+        }
     }
 
+    // Uses the new CountryCurrencyEntity list
     private fun setupCountryDropdowns() {
-        val countryNames = countries.map { it.name }
+        val countryNames = countryEntities.map { it.countryName }
         val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, countryNames)
+
         fromInput.setAdapter(adapter)
         fromInput.threshold = 1
         toInput.setAdapter(adapter)

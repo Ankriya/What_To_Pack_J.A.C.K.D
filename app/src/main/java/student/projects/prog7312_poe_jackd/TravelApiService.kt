@@ -6,7 +6,7 @@ import retrofit2.http.Path
 
 interface TravelApiService {
     @GET("api/countries")
-    fun getCountries(): Call<List<Country>>
+    suspend fun getCountriesSuspend(): List<Country>
 
     @GET("api/currency/convert/{from}/{to}/{amount}")
     fun convertCurrency(
