@@ -90,4 +90,7 @@ dependencies {
 
     // Coroutines Dependency
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+
+    // Biometrics
+    implementation("androidx.biometric:biometric:1.2.0-alpha05")
 }

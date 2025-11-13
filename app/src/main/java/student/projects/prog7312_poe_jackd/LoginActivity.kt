@@ -17,6 +17,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import androidx.biometric.BiometricManager
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
 
 class LoginActivity : BaseActivity() {
 
@@ -61,6 +64,7 @@ class LoginActivity : BaseActivity() {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
 
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -93,7 +97,6 @@ class LoginActivity : BaseActivity() {
                             "lastLogin" to System.currentTimeMillis()
                         )
 
-                        // Use merge to update existing fields or create new document
                         db.collection("users").document(it.uid)
                             .set(userData, SetOptions.merge())
                             .addOnSuccessListener {
@@ -114,20 +117,62 @@ class LoginActivity : BaseActivity() {
                     }
                 } else {
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
-                    Toast.makeText(this, "Authentication failed: ${task.exception?.message}",
-                        Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this,
+                        "Authentication failed: ${task.exception?.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
     }
 
+    //biometric authentication shown before auto-login if user is already signed in, for added security/authentication
     override fun onStart() {
         super.onStart()
-        // Check if user is already signed in
         val currentUser = auth.currentUser
+
         if (currentUser != null) {
-            // User already logged in, go to menu
-            startActivity(Intent(this, MenuActivity::class.java))
-            finish()
+            val biometricManager = BiometricManager.from(this)
+            val canAuth = biometricManager.canAuthenticate(
+                BiometricManager.Authenticators.BIOMETRIC_STRONG or
+                        BiometricManager.Authenticators.DEVICE_CREDENTIAL
+            )
+
+            if (canAuth == BiometricManager.BIOMETRIC_SUCCESS) {
+                // Show biometric prompt before continuing
+                val executor = ContextCompat.getMainExecutor(this)
+                val biometricPrompt = BiometricPrompt(this, executor,
+                    object : BiometricPrompt.AuthenticationCallback() {
+                        override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                            super.onAuthenticationSucceeded(result)
+                            Toast.makeText(applicationContext, "Welcome back ${currentUser.displayName}!", Toast.LENGTH_SHORT).show()
+                            startActivity(Intent(this@LoginActivity, MenuActivity::class.java))
+                            finish()
+                        }
+
+                        override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
+                            super.onAuthenticationError(errorCode, errString)
+                            Toast.makeText(applicationContext, "Authentication error: $errString", Toast.LENGTH_SHORT).show()
+                        }
+
+                        override fun onAuthenticationFailed() {
+                            super.onAuthenticationFailed()
+                            Toast.makeText(applicationContext, "Authentication failed. Try again.", Toast.LENGTH_SHORT).show()
+                        }
+                    })
+
+                val promptInfo = BiometricPrompt.PromptInfo.Builder()
+                    .setTitle("Confirm your identity")
+                    .setSubtitle("Use your fingerprint or face to continue")
+                    .setNegativeButtonText("Cancel")
+                    .build()
+
+                biometricPrompt.authenticate(promptInfo)
+            } else {
+                //If there is no biometrics available on the device, it takes the user directly to the menu
+                startActivity(Intent(this, MenuActivity::class.java))
+                finish()
+            }
         }
     }
 
