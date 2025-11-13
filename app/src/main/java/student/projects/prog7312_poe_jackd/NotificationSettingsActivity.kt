@@ -18,11 +18,6 @@ class NotificationSettingsActivity : BaseActivity(), NavigationView.OnNavigation
     private lateinit var switchListNotifications: SwitchMaterial
     private lateinit var switchTripNotifications: SwitchMaterial
     private lateinit var switchProfileNotifications: SwitchMaterial
-    private lateinit var switchWeatherNotifications: SwitchMaterial
-    private lateinit var switchRestaurantNotifications: SwitchMaterial
-    private lateinit var switchEventNotifications: SwitchMaterial
-    private lateinit var switchTransportNotifications: SwitchMaterial
-    private lateinit var switchCurrencyNotifications: SwitchMaterial
 
     companion object {
         const val PREFS_NAME = "NotificationPrefs"
@@ -54,11 +49,6 @@ class NotificationSettingsActivity : BaseActivity(), NavigationView.OnNavigation
         switchListNotifications = findViewById(R.id.switch_list_notifications)
         switchTripNotifications = findViewById(R.id.switch_trip_notifications)
         switchProfileNotifications = findViewById(R.id.switch_profile_notifications)
-        switchWeatherNotifications = findViewById(R.id.switch_weather_notifications)
-        switchRestaurantNotifications = findViewById(R.id.switch_restaurant_notifications)
-        switchEventNotifications = findViewById(R.id.switch_event_notifications)
-        switchTransportNotifications = findViewById(R.id.switch_transport_notifications)
-        switchCurrencyNotifications = findViewById(R.id.switch_currency_notifications)
 
         loadPreferences()
 
@@ -72,26 +62,6 @@ class NotificationSettingsActivity : BaseActivity(), NavigationView.OnNavigation
 
         switchProfileNotifications.setOnCheckedChangeListener { _, isChecked ->
             savePreference(KEY_PROFILE_NOTIFICATIONS, isChecked)
-        }
-
-        switchWeatherNotifications.setOnCheckedChangeListener { _, isChecked ->
-            savePreference(KEY_WEATHER_NOTIFICATIONS, isChecked)
-        }
-
-        switchRestaurantNotifications.setOnCheckedChangeListener { _, isChecked ->
-            savePreference(KEY_RESTAURANT_NOTIFICATIONS, isChecked)
-        }
-
-        switchEventNotifications.setOnCheckedChangeListener { _, isChecked ->
-            savePreference(KEY_EVENT_NOTIFICATIONS, isChecked)
-        }
-
-        switchTransportNotifications.setOnCheckedChangeListener { _, isChecked ->
-            savePreference(KEY_TRANSPORT_NOTIFICATIONS, isChecked)
-        }
-
-        switchCurrencyNotifications.setOnCheckedChangeListener { _, isChecked ->
-            savePreference(KEY_CURRENCY_NOTIFICATIONS, isChecked)
         }
     }
 
@@ -114,11 +84,6 @@ class NotificationSettingsActivity : BaseActivity(), NavigationView.OnNavigation
         switchListNotifications.isChecked = prefs.getBoolean(KEY_LIST_NOTIFICATIONS, true)
         switchTripNotifications.isChecked = prefs.getBoolean(KEY_TRIP_NOTIFICATIONS, true)
         switchProfileNotifications.isChecked = prefs.getBoolean(KEY_PROFILE_NOTIFICATIONS, true)
-        switchWeatherNotifications.isChecked = prefs.getBoolean(KEY_WEATHER_NOTIFICATIONS, true)
-        switchRestaurantNotifications.isChecked = prefs.getBoolean(KEY_RESTAURANT_NOTIFICATIONS, true)
-        switchEventNotifications.isChecked = prefs.getBoolean(KEY_EVENT_NOTIFICATIONS, true)
-        switchTransportNotifications.isChecked = prefs.getBoolean(KEY_TRANSPORT_NOTIFICATIONS, true)
-        switchCurrencyNotifications.isChecked = prefs.getBoolean(KEY_CURRENCY_NOTIFICATIONS, true)
     }
 
     private fun savePreference(key: String, value: Boolean) {
