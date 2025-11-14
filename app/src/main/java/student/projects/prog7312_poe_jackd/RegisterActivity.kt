@@ -16,6 +16,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.messaging.FirebaseMessaging
 
 class RegisterActivity : BaseActivity() {
 
@@ -40,11 +41,9 @@ class RegisterActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        // Initialize Firebase Auth and Firestore
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
-        // Configure Google Sign-In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
@@ -52,12 +51,10 @@ class RegisterActivity : BaseActivity() {
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        // REGISTER button triggers Google Sign-In
         findViewById<Button>(R.id.RegBtn).setOnClickListener {
             signInWithGoogle()
         }
 
-        // LOGIN HERE button goes back to LoginActivity
         findViewById<Button>(R.id.Loginbtn).setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
@@ -85,7 +82,6 @@ class RegisterActivity : BaseActivity() {
                     Log.d(TAG, "signInWithCredential:success")
                     val user = auth.currentUser
 
-                    // Save user to Firestore
                     user?.let {
                         val userData = hashMapOf(
                             "uid" to it.uid,
@@ -99,10 +95,10 @@ class RegisterActivity : BaseActivity() {
                             .set(userData)
                             .addOnSuccessListener {
                                 Log.d(TAG, "User saved to Firestore")
+                                FirebaseMessaging.getInstance().subscribeToTopic("all_users")
                                 Toast.makeText(this, "Welcome ${user.displayName}! Account created.",
                                     Toast.LENGTH_SHORT).show()
 
-                                // Navigate to main menu
                                 startActivity(Intent(this, MenuActivity::class.java))
                                 finish()
                             }

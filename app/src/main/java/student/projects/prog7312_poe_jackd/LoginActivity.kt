@@ -20,6 +20,7 @@ import com.google.firebase.firestore.SetOptions
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
+import com.google.firebase.messaging.FirebaseMessaging
 
 class LoginActivity : BaseActivity() {
 
@@ -54,16 +55,13 @@ class LoginActivity : BaseActivity() {
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        // LOGIN HERE button triggers Google Sign-In
         findViewById<Button>(R.id.Loginbtn).setOnClickListener {
             signInWithGoogle()
         }
 
-        // REGISTER button goes to RegisterActivity
         findViewById<Button>(R.id.RegBtn).setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
-
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -87,7 +85,6 @@ class LoginActivity : BaseActivity() {
                     Log.d(TAG, "signInWithCredential:success")
                     val user = auth.currentUser
 
-                    // Save/update user to Firestore
                     user?.let {
                         val userData = hashMapOf(
                             "uid" to it.uid,
@@ -101,15 +98,14 @@ class LoginActivity : BaseActivity() {
                             .set(userData, SetOptions.merge())
                             .addOnSuccessListener {
                                 Log.d(TAG, "User data saved/updated in Firestore")
+                                FirebaseMessaging.getInstance().subscribeToTopic("all_users")
                                 Toast.makeText(this, "Welcome back ${user.displayName}!", Toast.LENGTH_SHORT).show()
 
-                                // Navigate to main menu
                                 startActivity(Intent(this, MenuActivity::class.java))
                                 finish()
                             }
                             .addOnFailureListener { e ->
                                 Log.w(TAG, "Error saving user data", e)
-                                // Still navigate even if Firestore save fails
                                 Toast.makeText(this, "Welcome back ${user.displayName}!", Toast.LENGTH_SHORT).show()
                                 startActivity(Intent(this, MenuActivity::class.java))
                                 finish()
@@ -126,7 +122,6 @@ class LoginActivity : BaseActivity() {
             }
     }
 
-    //biometric authentication shown before auto-login if user is already signed in, for added security/authentication
     override fun onStart() {
         super.onStart()
         val currentUser = auth.currentUser
@@ -139,7 +134,6 @@ class LoginActivity : BaseActivity() {
             )
 
             if (canAuth == BiometricManager.BIOMETRIC_SUCCESS) {
-                // Show biometric prompt before continuing
                 val executor = ContextCompat.getMainExecutor(this)
                 val biometricPrompt = BiometricPrompt(this, executor,
                     object : BiometricPrompt.AuthenticationCallback() {
@@ -169,7 +163,6 @@ class LoginActivity : BaseActivity() {
 
                 biometricPrompt.authenticate(promptInfo)
             } else {
-                //If there is no biometrics available on the device, it takes the user directly to the menu
                 startActivity(Intent(this, MenuActivity::class.java))
                 finish()
             }

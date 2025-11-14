@@ -93,4 +93,8 @@ dependencies {
 
     // Biometrics
     implementation("androidx.biometric:biometric:1.2.0-alpha05")
+
+    //FCM
+    implementation("com.google.firebase:firebase-messaging-ktx:23.4.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
 }
