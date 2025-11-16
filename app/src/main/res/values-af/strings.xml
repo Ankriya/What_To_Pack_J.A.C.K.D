@@ -123,6 +123,17 @@
     <string name="FindTransportBtn">Soek vervoer</string>
     <string name="Address">Adres</string>
 
+    <!--    SETTINGS PAGE-->
+    <string name="Settings">INSTELLINGS</string>
+    <string name="NOTIFICATIONS">KENNISGEWINGS</string>
+    <string name="LIST_NOTIFICATIONS">Lyskennisgewings</string>
+    <string name="TRIP_NOTIFICATIONS">Reiskennisgewings</string>
+    <string name="PROFILE_UPDATES">Profielopdaterings</string>
+    <string name="Notifications_tip">
+Skakel kennisgewings vir verskillende toepassingsaktiwiteite aan of af. Kennisgewings sal verskyn wanneer jy lyste skep, reise stoor, of jou profiel opdateer.
+</string>
+
+
     <string name="VenueName">Lokaal Naam:</string>
     <string name="Location">LIGGING:</string>
     <string name="TYPE">TIPE:</string>

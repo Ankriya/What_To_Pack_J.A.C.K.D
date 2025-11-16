@@ -123,6 +123,17 @@
     <string name="FindTransportBtn">Thola Ezokuthutha</string>
     <string name="Address">Ikheli</string>
 
+    <!--    SETTINGS PAGE-->
+    <string name="Settings">IZILUNGISELELO</string>
+    <string name="NOTIFICATIONS">IZAZISO</string>
+    <string name="LIST_NOTIFICATIONS">Izaziso Zohlu</string>
+    <string name="TRIP_NOTIFICATIONS">Izaziso Zohambo</string>
+    <string name="PROFILE_UPDATES">Izibuyekezo Zephrofayela</string>
+    <string name="Notifications_tip">
+Shintsha izaziso zemisebenzi ehlukene ku-app. Izaziso zizovela uma udala uhlu, ugcina uhambo, noma ubuyekeza iphrofayela yakho.
+</string>
+
+
     <string name="VenueName">Igama Lendawo:</string>
     <string name="Location">INDAWO:</string>
     <string name="TYPE">UHLOBO:</string>

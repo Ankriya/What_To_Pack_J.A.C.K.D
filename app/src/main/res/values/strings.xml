@@ -131,6 +131,13 @@
     <string name="Style">STYLE:</string>
     <string name="FlightTime">FLIGHT TIME:</string>
 
+    <!--    SETTINGS PAGE-->
+    <string name="Settings">SETTINGS</string>
+    <string name="NOTIFICATIONS">NOTIFICATIONS</string>
+    <string name="LIST_NOTIFICATIONS">List Notifications</string>
+    <string name="TRIP_NOTIFICATIONS">Trip Notifications</string>
+    <string name="PROFILE_UPDATES">Profile Updates</string>
+    <string name="Notifications_tip">Toggle notifications for different app activities. Notifications will appear when you create lists, save trips, or update your profile.</string>
 
 
     <!--     translatable="false" default language buttons-->

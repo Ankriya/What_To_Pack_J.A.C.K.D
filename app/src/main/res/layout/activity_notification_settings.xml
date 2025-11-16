@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:fontFamily="@font/tantangkiwood_display"
-            android:text="SETTINGS"
+            android:text="@string/Settings"
             android:gravity="center"
             android:textColor="@color/black"
             android:textSize="60sp"
@@ -74,7 +74,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="NOTIFICATIONS"
+                    android:text="@string/NOTIFICATIONS"
                     android:fontFamily="@font/tantangkiwood_display"
                     android:textSize="40sp"
                     android:textColor="@color/black"
@@ -99,7 +99,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="List Notifications"
+                        android:text="@string/LIST_NOTIFICATIONS"
                         android:fontFamily="@font/tantangkiwood_display"
                         android:textSize="28sp"
                         android:textColor="@color/black"/>
@@ -130,7 +130,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Trip Notifications"
+                        android:text="@string/TRIP_NOTIFICATIONS"
                         android:fontFamily="@font/tantangkiwood_display"
                         android:textSize="28sp"
                         android:textColor="@color/black"/>
@@ -161,7 +161,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Profile Updates"
+                        android:text="@string/PROFILE_UPDATES"
                         android:fontFamily="@font/tantangkiwood_display"
                         android:textSize="28sp"
                         android:textColor="@color/black"/>
@@ -184,7 +184,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="48dp"
             android:layout_marginTop="24dp"
-            android:text="Toggle notifications for different app activities. Notifications will appear when you create lists, save trips, or update your profile."
+            android:text="@string/Notifications_tip"
             android:fontFamily="@font/tantangkiwood_display"
             android:textSize="18sp"
             android:textColor="@color/black"
