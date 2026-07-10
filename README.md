@@ -1,4 +1,4 @@
-PROG7312 POE README - WHAT TO PACK (J.A.C.K.D)
+WHAT TO PACK (J.A.C.K.D) README
 
 INTRODUCTION: What to Pack is a comprehensive mobile application designed to function as a digital assistant for travelers. Its core purpose is to simplify the travel experience by consolidating essential information and planning tools into a single platform. Key functionalities include seamless integration of real-time data (Weather, Currency, Events) with a personalised My Suitcase section for managing trip details and customisable packing lists
 
